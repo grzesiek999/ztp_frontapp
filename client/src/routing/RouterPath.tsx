@@ -9,11 +9,9 @@ export const ROUTER_PATH = {
 
     // User routes
     LIBRARY: '/library',
-    RENT: '/library/rent',
-    RETURN: '/library/return',
+    RENT: '/library/rent/:book_id',
+    RETURN: '/library/return/:book_id',
 
     // Admin routes
     ADDBOOK: '/admin/addbook',
-    EDITBOOK: '/admin/editbook',
-    DELBOOK: '/admin/delbook',
 }
