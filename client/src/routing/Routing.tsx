@@ -4,12 +4,13 @@ import {ROUTER_PATH} from "./RouterPath.tsx"
 import PublicRoute from "./PublicRoute.tsx";
 import ProtectedRoute from "./ProtectedRoute.tsx";
 import AdminRoute from "./AdminRoute.tsx";
+import Home from "../pages/Home.tsx";
 
 
 const ROUTER = createBrowserRouter(
     createRoutesFromElements(
         <Route path='/' element={null} >
-            <Route path={ROUTER_PATH.HOME} element={null} />
+            <Route path={ROUTER_PATH.HOME} element={<Home />} />
             <Route path={ROUTER_PATH.NO_ACCESS} element={null} />
             <Route element={<PublicRoute/>}>
                 <Route path={ROUTER_PATH.USER_LOGIN} element={null} />
