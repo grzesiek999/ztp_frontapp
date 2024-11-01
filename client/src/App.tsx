@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import Router from "./routing/Routing.tsx";
 
 
-function App() {
+const App = () => {
 
   return (
-
+    <Router />
   )
 }
 
