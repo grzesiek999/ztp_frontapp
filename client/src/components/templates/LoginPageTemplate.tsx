@@ -4,7 +4,7 @@ import {useMedia} from "use-media";
 const DesktopTemplate = () => {
     return(
         <>
-            desktop
+            desktoplogin
         </>
     )
 }
