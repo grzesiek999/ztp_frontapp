@@ -10,11 +10,12 @@ import Login from "../pages/Login.tsx";
 import ALogin from "../pages/ALogin.tsx";
 import Register from "../pages/Register.tsx";
 import AddBook from "../pages/AddBook.tsx";
+import WebsiteLayout from "../components/organism/WebsiteLayout/WebsiteLayout.tsx";
 
 
 const ROUTER = createBrowserRouter(
     createRoutesFromElements(
-        <Route path='/' element={null} >
+        <Route path='/' element={<WebsiteLayout />} >
             <Route path={ROUTER_PATH.HOME} element={<Home />} />
             <Route path={ROUTER_PATH.NO_ACCESS} element={<NoAccess />} />
 

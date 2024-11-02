@@ -1,6 +1,9 @@
 export const ROUTER_PATH = {
     HOME: '/',
     NO_ACCESS: '/noaccess',
+    EVENTS: '/events',
+    LIBRARY: '/library',
+    ABOUT_US: 'about_us',
 
     // Public routes
     USER_LOGIN: '/login',
@@ -8,7 +11,6 @@ export const ROUTER_PATH = {
     REGISTER: '/register',
 
     // User routes
-    LIBRARY: '/library',
     RENT: '/library/rent/:book_id',
     RETURN: '/library/return/:book_id',
 

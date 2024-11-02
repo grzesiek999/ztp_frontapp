@@ -1,11 +1,17 @@
-@import "./_animations.scss";
+@use "./animations.scss";
 
-@import "./_fonts.scss";
+@use "./fonts.scss";
 
-@import "./_globals.scss";
+@use "./globals.scss";
 
-@import "./_mixins.scss";
+@use "./mixins.scss";
 
-@import "./_print.scss";
+@use "./print.scss";
 
-@import "./_variables.scss";
+@use "./variables.scss";
+
+@use "./components/organism/WebsiteLayout/website-layout-div.scss";
+
+@use "./components/molecules/WebsiteLayout/website-layout-nav-div.scss";
+
+@use "./components/molecules/WebsiteLayout/website-layout-buttons-div.scss";
