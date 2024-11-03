@@ -2,28 +2,43 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  margin: 0 50px;
+  align-items: center;
 }
 
 .website-layout-nav-div nav{
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .website-layout-nav-div nav ul{
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
+  align-items: center;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
 .website-layout-nav-div nav ul li{
-  margin-right: 50px;
+  margin-right: 150px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .website-layout-nav-div nav ul li:last-child{
   margin-right: 0;
+}
+
+.website-layout-nav-div nav ul li a{
+  text-decoration: none;
+  color: #02212e;
+  font-size: 42px;
+  letter-spacing: 1px;
+  font-family: "Special Elite", system-ui;
+  font-weight: 400;
+  font-style: normal;
 }

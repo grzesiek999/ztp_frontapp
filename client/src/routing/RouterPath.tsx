@@ -3,7 +3,7 @@ export const ROUTER_PATH = {
     NO_ACCESS: '/noaccess',
     EVENTS: '/events',
     LIBRARY: '/library',
-    ABOUT_US: 'about_us',
+    ABOUT_US: '/about_us',
 
     // Public routes
     USER_LOGIN: '/login',
