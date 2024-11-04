@@ -7,10 +7,10 @@ const DektopTemplate = () => {
     return (
         <div className="home-page-about-us-div">
             <span className="home-page-about-us-span">ABOUT US</span>
-            <HomePageAboutUsSegment imgSrc={""} imgAlt={""} nickname={"Admin1"} role={"Admin"}/>
-            <HomePageAboutUsSegment imgSrc={""} imgAlt={""} nickname={"Admin2"} role={"Admin"}/>
-            <HomePageAboutUsSegment imgSrc={""} imgAlt={""} nickname={"Librarian1"} role={"Librarian"}/>
-            <HomePageAboutUsSegment imgSrc={""} imgAlt={""} nickname={"Librarian1"} role={"librarian"}/>
+            <HomePageAboutUsSegment imgSrc={""} imgAlt={""} nickname={"Admin1"} />
+            <HomePageAboutUsSegment imgSrc={""} imgAlt={""} nickname={"Admin2"} />
+            <HomePageAboutUsSegment imgSrc={""} imgAlt={""} nickname={"Librarian1"} />
+            <HomePageAboutUsSegment imgSrc={""} imgAlt={""} nickname={"Librarian1"} />
             <Link to={'/'}>Click to see more</Link>
         </div>
     )

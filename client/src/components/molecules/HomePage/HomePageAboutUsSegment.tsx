@@ -1,23 +1,23 @@
+import { Link } from "react-router-dom";
 import {useMedia} from "use-media";
 
 type HomePageAboutUsSegmentProps = {
     imgSrc: string,
     imgAlt: string,
     nickname: string,
-    role: string,
 }
 
-const DesktopTemplate = ({imgSrc, imgAlt, nickname, role}: HomePageAboutUsSegmentProps) => {
+const DesktopTemplate = ({imgSrc, imgAlt, nickname}: HomePageAboutUsSegmentProps) => {
     return (
-        <div>
+        <div className="home-page-about-us-segment-div-desktop">
             <img src={imgSrc} alt={imgAlt} />
             <span>{nickname}</span>
-            <span>{role}</span>
+            <Link to={"/"}>View details</Link>
         </div>
     )
 }
 
-const MobileTemplate = ({imgSrc, imgAlt, nickname, role}: HomePageAboutUsSegmentProps) => {
+const MobileTemplate = ({imgSrc, imgAlt, nickname}: HomePageAboutUsSegmentProps) => {
     return (
         <>
         </>
@@ -25,13 +25,13 @@ const MobileTemplate = ({imgSrc, imgAlt, nickname, role}: HomePageAboutUsSegment
 }
 
 
-export default function HomePageAboutUsSegment({imgSrc, imgAlt, nickname, role}: HomePageAboutUsSegmentProps) {
+export default function HomePageAboutUsSegment({imgSrc, imgAlt, nickname}: HomePageAboutUsSegmentProps) {
     const isMobile = useMedia({maxWidth: 1170})
 
     return (
         <>
-            {isMobile ? <MobileTemplate imgSrc={imgSrc} imgAlt={imgAlt} nickname={nickname} role={role} />:
-                <DesktopTemplate imgSrc={imgSrc} imgAlt={imgAlt} nickname={nickname} role={role} />}
+            {isMobile ? <MobileTemplate imgSrc={imgSrc} imgAlt={imgAlt} nickname={nickname} />:
+                <DesktopTemplate imgSrc={imgSrc} imgAlt={imgAlt} nickname={nickname} />}
         </>
     )
 }
