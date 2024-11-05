@@ -3,15 +3,15 @@ import HomePageAboutUsSegment from "./HomePageAboutUsSegment.tsx";
 import {Link} from "react-router-dom";
 
 
-const DektopTemplate = () => {
+const DesktopTemplate = () => {
     return (
         <div className="home-page-about-us-div">
             <span className="home-page-about-us-span">ABOUT US</span>
-            <HomePageAboutUsSegment imgSrc={""} imgAlt={""} nickname={"Admin1"} />
-            <HomePageAboutUsSegment imgSrc={""} imgAlt={""} nickname={"Admin2"} />
-            <HomePageAboutUsSegment imgSrc={""} imgAlt={""} nickname={"Librarian1"} />
-            <HomePageAboutUsSegment imgSrc={""} imgAlt={""} nickname={"Librarian1"} />
-            <Link to={'/'}>Click to see more</Link>
+            <HomePageAboutUsSegment imgSrc={"/icons/user-icon.png"} imgAlt={"user-image-error"} nickname={"Admin1"} />
+            <HomePageAboutUsSegment imgSrc={"/icons/user-icon.png"} imgAlt={"user-image-error"} nickname={"Admin2"} />
+            <HomePageAboutUsSegment imgSrc={"/icons/user-icon.png"} imgAlt={"user-image-error"} nickname={"Librarian1"} />
+            <HomePageAboutUsSegment imgSrc={"/icons/user-icon.png"} imgAlt={"user-image-error"} nickname={"Librarian1"} />
+            <Link to={'/'} className="home-about-us-more-link">Click to see more</Link>
         </div>
     )
 }
@@ -29,7 +29,7 @@ export default function HomePageAboutUs () {
 
     return (
         <>
-            {isMobile ? <MobileTemplate /> : <DektopTemplate />}
+            {isMobile ? <MobileTemplate /> : <DesktopTemplate />}
         </>
     )
 }

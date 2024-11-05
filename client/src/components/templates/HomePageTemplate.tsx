@@ -1,11 +1,13 @@
 import {useMedia} from 'use-media'
 import HomePageTopContainer from "../organism/HomePage/HomePageTopContainer.tsx";
+import HomePageBotContainer from "../organism/HomePage/HomePageBotContainer.tsx";
 
 
 const DesktopTemplate = () => {
     return (
         <div className='home-page-template-div'>
             <HomePageTopContainer />
+            <HomePageBotContainer />
         </div>
     )
 }
