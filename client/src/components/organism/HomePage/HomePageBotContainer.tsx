@@ -1,9 +1,11 @@
 import {useMedia} from "use-media";
+import HomePageNewArrivals from "../../molecules/HomePage/HomePageNevArrivals";
 
 
 const DesktopTemplate = () => {
     return (
-        <div>
+        <div className="home-page-bot-container-div-desktop">
+            <HomePageNewArrivals />
         </div>
     )
 }
