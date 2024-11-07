@@ -38,6 +38,10 @@
 
 @use "./components/templates/login-page-template-div";
 
-@use "./components//organism/LoginPage/login-panel-div.scss";
+@use "./components/templates/register-page-template-div";
+
+@use "./components/organism/LoginPage/login-panel-div.scss";
 
 @use "./components/molecules/LoginPage/login-panel-input-container.scss";
+
+@use "./components/organism/RegisterPage/register-panel-div.scss";

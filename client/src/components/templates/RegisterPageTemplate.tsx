@@ -1,11 +1,12 @@
 import {useMedia} from "use-media";
+import RegisterPanel from "../organism/RegisterPage/RegisterPanel.tsx";
 
 
 const DesktopTemplate = () => {
     return(
-        <>
-            desktop
-        </>
+        <div className="register-page-template-div">
+            <RegisterPanel />
+        </div>
     )
 }
 
