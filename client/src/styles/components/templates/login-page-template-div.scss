@@ -2,6 +2,6 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  background-image: url("/images/login-panel-background.webp");
-
+  justify-content: center;
+  min-width: 100%;
 }

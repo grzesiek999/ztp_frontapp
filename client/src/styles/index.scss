@@ -37,3 +37,7 @@
 @use "./components/molecules/HomePage/home-page-event-segment-div";
 
 @use "./components/templates/login-page-template-div";
+
+@use "./components//organism/LoginPage/login-panel-div.scss";
+
+@use "./components/molecules/LoginPage/login-panel-input-container.scss";
