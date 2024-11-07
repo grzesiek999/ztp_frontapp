@@ -1,10 +1,11 @@
 import {useMedia} from "use-media";
+import LoginPanel from "../organism/LoginPage/LoginPanel";
 
 
 const DesktopTemplate = () => {
     return(
         <div className="login-page-template-div">
-
+            <LoginPanel />
         </div>
     )
 }
