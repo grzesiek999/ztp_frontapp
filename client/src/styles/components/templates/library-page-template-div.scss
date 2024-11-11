@@ -1,0 +1,17 @@
+.library-page-template-div-desktop {
+  box-sizing: border-box;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.library-page-span {
+  margin-top: 50px;
+  color: #02212e;
+  font-size: 72px;
+  letter-spacing: 1px;
+  font-family: "Special Elite", system-ui;
+  font-weight: 600;
+  font-style: normal;
+}

@@ -21,8 +21,8 @@ export default function AddBookPageTemplate() {
     const isMobile = useMedia({maxWidth: 1170})
 
     return (
-        <>
+        <main>
             {isMobile ? <MobileTemplate /> : <DesktopTemplate />}
-        </>
+        </main>
     )
 }

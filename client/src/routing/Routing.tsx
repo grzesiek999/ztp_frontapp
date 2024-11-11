@@ -11,6 +11,7 @@ import ALogin from "../pages/ALogin.tsx";
 import Register from "../pages/Register.tsx";
 import AddBook from "../pages/AddBook.tsx";
 import WebsiteLayout from "../components/organism/WebsiteLayout/WebsiteLayout.tsx";
+import Library from "../pages/Library.tsx";
 
 
 const ROUTER = createBrowserRouter(
@@ -18,6 +19,7 @@ const ROUTER = createBrowserRouter(
         <Route path='/' element={<WebsiteLayout />} >
             <Route path={ROUTER_PATH.HOME} element={<Home />} />
             <Route path={ROUTER_PATH.NO_ACCESS} element={<NoAccess />} />
+            <Route path={ROUTER_PATH.LIBRARY} element={<Library />} />
 
             <Route element={<PublicRoute/>}>
                 <Route path={ROUTER_PATH.USER_LOGIN} element={<Login />} />
@@ -26,7 +28,7 @@ const ROUTER = createBrowserRouter(
             </Route>
 
             <Route element={<ProtectedRoute/>} >
-                <Route path={ROUTER_PATH.LIBRARY} element={null} />
+
                 <Route path={ROUTER_PATH.RENT} element={null} />
                 <Route path={ROUTER_PATH.RETURN} element={null} />
             </Route>

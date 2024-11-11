@@ -1,27 +1,26 @@
 import {useMedia} from "use-media";
-import RegisterPanel from "../organism/RegisterPage/RegisterPanel.tsx";
 
 
 const DesktopTemplate = () => {
-    return(
-        <div className="register-page-template-div">
-            <RegisterPanel />
+    return (
+        <div className='library-page-template-div-desktop'>
+            <span className='library-page-span'>Search for Books</span>
         </div>
     )
 }
 
 const MobileTemplate = () => {
     return (
-        <>
-            mobile
-        </>
+        <div>
+
+        </div>
     )
 }
 
-export default function RegisterPageTemplate() {
+export default function LibraryPageTemplate() {
     const isMobile = useMedia({maxWidth: 1170})
 
-    return(
+    return (
         <main>
             {isMobile ? <MobileTemplate /> : <DesktopTemplate />}
         </main>
