@@ -1,11 +1,12 @@
 import useMedia from "use-media"
+import LibrarySortFilters from "../../molecules/Library/LibrarySortFilters"
 
 
 
 const DesktopTemplate = () => {
     return (
         <div>
-            
+            <LibrarySortFilters />
         </div>
     )
 }

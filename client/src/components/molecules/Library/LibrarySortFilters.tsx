@@ -4,24 +4,26 @@ import useMedia from "use-media"
 
 const DesktopTemplate = () => {
     return (
-        <div>
-            <span>Sort by</span>
-            <div>
-                <span></span>
-                <span>Author</span>
-            </div>
-            <div>
-                <span></span>
-                <span>Titles</span>
-            </div>
-            <div>
-                <span></span>
-                <span>Category</span>
-            </div>
-            <div>
-                <span></span>
-                <span>Years</span>
-            </div>
+        <div className="library-sort-filters-div-desktop">
+            <span className="sort-title-span">Sort by</span>
+            <ul>
+                <li>
+                    <button type="button" id="sb1" className="sort-button"></button>
+                    <span>Author</span>
+                </li>
+                <li>
+                    <button type="button" id="sb2" className="sort-button"></button>
+                    <span>Titles</span>
+                </li>
+                <li>
+                    <button type="button" id="sb3" className="sort-button"></button>
+                    <span>Category</span>
+                </li>
+                <li>
+                    <button type="button" id="sb4" className="sort-button"></button>
+                    <span>Years</span>
+                </li>
+            </ul>
         </div>
     )
 }
