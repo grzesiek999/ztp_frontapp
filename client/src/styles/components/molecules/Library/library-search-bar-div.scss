@@ -1,0 +1,58 @@
+.library-search-bar-div {
+    width: 600px;
+    height: 50px;
+    margin: 40px 0 20px 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    border-radius: 50px;
+    background-color: #f8f8f6;
+    -webkit-box-shadow: 0px 8px 24px 0px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 0px 8px 24px 0px rgba(66, 68, 90, 1);
+    box-shadow: 0px 8px 24px 0px rgba(66, 68, 90, 1);
+}
+
+.library-search-bar-div input{
+    width: 470px;
+    height: 50px;
+    margin: 0;
+    padding: 0 10px 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: none;
+    outline: none;
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+    background-color: #f8f8f6;
+    color: #02212e;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-family: "Special Elite", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.library-search-bar-div button{
+    width: 130px;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    border: none;
+    outline: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background-color: #082239;
+    color: #f1f8ff;
+    font-size: 22px;
+    letter-spacing: 1px;
+    font-family: "Special Elite", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}

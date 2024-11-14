@@ -5,7 +5,7 @@ import InputModel from "../../molecules/InputModels";
 
 
 
-export default function LoginPanel () {
+export default function LoginPanel ({admin}: {admin: boolean}) {
     
     const [email, setEmail] = useState<string | null>(null)
     const [password, setPassword] = useState<string | null>(null)
@@ -40,11 +40,11 @@ export default function LoginPanel () {
 
     return (
         <div className="login-panel-div">
-            <span className="login-panel-span">Login</span>
+            <span className={admin ? 'admin-login-panel-span' : 'login-panel-span'}>{admin ? 'Admin Login' : 'Login'}</span>
             <form onSubmit={signin}> 
                 <InputModel
                     containerClassName={'login-panel-input-container'} 
-                    labelContent={'User email:'} 
+                    labelContent={admin ? 'Admin email:' : 'User email:'} 
                     labelClassName={'login-panel-label'} 
                     inputType={'text'}
                     step={undefined} 
@@ -66,7 +66,7 @@ export default function LoginPanel () {
                 />
                 <button type="submit" className="login-panel-login-button">LogIn</button>
             </form>
-            <Link to={ROUTER_PATH.REGISTER}>Create Account</Link>
+            {!admin && <Link to={ROUTER_PATH.REGISTER}>Create Account</Link> }
             <Link to={'/'} className="login-panel-forget-password-span">Forget Password ?</Link>
         </div>
     )
