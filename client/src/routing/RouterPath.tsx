@@ -1,9 +1,9 @@
 export const ROUTER_PATH = {
     HOME: '/',
     NO_ACCESS: '/noaccess',
-    EVENTS: '/events',
     LIBRARY: '/library',
-    ABOUT_US: '/about_us',
+    EVENTS: '/',
+    ABOUT_US: '/',
 
     // Public routes
     USER_LOGIN: '/login',

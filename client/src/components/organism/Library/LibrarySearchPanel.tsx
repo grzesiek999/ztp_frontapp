@@ -1,11 +1,13 @@
 import useMedia from "use-media"
 import LibrarySortFilters from "../../molecules/Library/LibrarySortFilters"
+import LibrarySearchBar from "../../molecules/Library/LibrarySearchBar"
 
 
 
 const DesktopTemplate = () => {
     return (
-        <div>
+        <div className="library-search-panel-div-desktop">
+            <LibrarySearchBar />
             <LibrarySortFilters />
         </div>
     )
