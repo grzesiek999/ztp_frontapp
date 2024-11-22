@@ -12,6 +12,8 @@ import Register from "../pages/Register.tsx";
 import AddBook from "../pages/AddBook.tsx";
 import WebsiteLayout from "../components/organism/WebsiteLayout/WebsiteLayout.tsx";
 import Library from "../pages/Library.tsx";
+import UserProfil from '../pages/UserProfile.tsx';
+import UserProfilLayout from '../components/organism/UserProfil/UserProfilLayout.tsx';
 
 
 const ROUTER = createBrowserRouter(
@@ -27,10 +29,14 @@ const ROUTER = createBrowserRouter(
                 <Route path={ROUTER_PATH.REGISTER} element={<Register />} />
             </Route>
 
+            <Route path={ROUTER_PATH.PROFIL} element={<UserProfilLayout />} >
+                <Route path={ROUTER_PATH.PROFIL} element={<UserProfil />} />
+                <Route path={ROUTER_PATH.UBOOKS} element={null} />
+                <Route path={ROUTER_PATH.UHISTORY} element={null} />
+            </Route>
+            
             <Route element={<ProtectedRoute/>} >
-
-                <Route path={ROUTER_PATH.RENT} element={null} />
-                <Route path={ROUTER_PATH.RETURN} element={null} />
+                <Route path={ROUTER_PATH.ULBOOK} element={null} />
             </Route>
 
             <Route element={<AdminRoute/>} >
