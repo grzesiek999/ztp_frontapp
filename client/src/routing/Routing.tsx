@@ -28,19 +28,18 @@ const ROUTER = createBrowserRouter(
                 <Route path={ROUTER_PATH.ADMIN_LOGIN} element={<ALogin />} />
                 <Route path={ROUTER_PATH.REGISTER} element={<Register />} />
             </Route>
-
-            <Route path={ROUTER_PATH.PROFIL} element={<UserProfilLayout />} >
-                <Route path={ROUTER_PATH.PROFIL} element={<UserProfil />} />
-                <Route path={ROUTER_PATH.UBOOKS} element={null} />
-                <Route path={ROUTER_PATH.UHISTORY} element={null} />
-            </Route>
             
             <Route element={<ProtectedRoute/>} >
-                <Route path={ROUTER_PATH.ULBOOK} element={null} />
+                <Route path={ROUTER_PATH.USER_LIBRARY_BOOK} element={null} />
+                <Route path={ROUTER_PATH.USER_PROFIL} element={<UserProfilLayout />} >
+                    <Route path={ROUTER_PATH.USER_PROFIL} element={<UserProfil />} />
+                    <Route path={ROUTER_PATH.USER_BOOKS} element={null} />
+                    <Route path={ROUTER_PATH.USER_HISTORY} element={null} />
+                </Route>
             </Route>
 
             <Route element={<AdminRoute/>} >
-                <Route path={ROUTER_PATH.ADDBOOK} element={<AddBook />} />
+                <Route path={ROUTER_PATH.ADD_BOOK} element={<AddBook />} />
             </Route>
         </Route>
     )

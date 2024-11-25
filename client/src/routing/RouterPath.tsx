@@ -11,13 +11,13 @@ export const ROUTER_PATH = {
     REGISTER: '/register',
 
     // User routes
-    PROFIL: '/profil/:user_id',                 // profil usera, zmiana hasła, zmiana emaila
-    UBOOKS: '/profil/:user_id/books',           // rezerwacje, wypozyczone, zwroty
-    UHISTORY: '/profil/:user_id/history',       // books history
-    ULBOOK: '/library/:book_id',                // wypożyczanie książki, szczegóły ksiązki, zwrot ksiązki
+    USER_PROFIL: '/user/:user_id',                // profil usera, zmiana hasła, zmiana emaila
+    USER_BOOKS: '/user/:user_id/books',           // rezerwacje, wypozyczone, zwroty
+    USER_HISTORY: '/user/:user_id/history',       // books history
+    USER_LIBRARY_BOOK: '/library/:book_id',       // wypożyczanie książki, szczegóły ksiązki, zwrot ksiązki
     
 
     // Admin routes
-    ADDBOOK: '/admin/library/addbook',         // dodawanie książki do biblioteki
-    ALBOOK: '/admin/library/:book_id'          // szczegóły, edytowanie książki, usuwanie, zmiany statusu   
+    ADD_BOOK: '/admin/library/addbook',                  // dodawanie książki do biblioteki
+    ADMIN_LIBRARY_BOOK: '/admin/library/:book_id'       // szczegóły, edytowanie książki, usuwanie, zmiany statusu   
 }
