@@ -9,6 +9,7 @@ export const ROUTER_PATH = {
     USER_LOGIN: '/login',  
     ADMIN_LOGIN: '/alogin',
     REGISTER: '/register',
+    ACCOUNT_CREATED: '/created_account',
 
     // User routes
     USER_PROFIL: '/user/:user_id',                // profil usera, zmiana hasła, zmiana emaila

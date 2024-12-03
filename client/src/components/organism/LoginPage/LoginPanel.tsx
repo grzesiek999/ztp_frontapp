@@ -1,5 +1,5 @@
 import { SyntheticEvent, useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ROUTER_PATH } from "../../../routing/RouterPath";
 import InputModel from "../../molecules/InputModels";
 
@@ -9,12 +9,13 @@ export default function LoginPanel ({admin}: {admin: boolean}) {
     
     const [email, setEmail] = useState<string | null>(null)
     const [password, setPassword] = useState<string | null>(null)
+    const navigate = useNavigate();
 
     
     const signin = async (e: SyntheticEvent) => {
         e.preventDefault();
     
-        const response = await fetch('', {
+        const response = await fetch('http://localhost:8000/auth/login', {
             method: '',
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
@@ -24,7 +25,10 @@ export default function LoginPanel ({admin}: {admin: boolean}) {
             })
         });
         if (response.ok) {
-    
+            const data = await response.json();
+            sessionStorage.setItem('access_token', data.acces_token)
+            sessionStorage.setItem('token_type', data.token_type)
+            return navigate(ROUTER_PATH.HOME);
         } else {console.log(response.status, response.statusText)}
     }
 

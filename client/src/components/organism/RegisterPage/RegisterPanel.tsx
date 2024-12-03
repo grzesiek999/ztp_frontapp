@@ -1,5 +1,7 @@
 import {SyntheticEvent, useState} from "react";
 import InputModel from "../../molecules/InputModels";
+import { useNavigate } from "react-router-dom";
+import { ROUTER_PATH } from "../../../routing/RouterPath";
 
 
 export default function RegisterPanel () {
@@ -10,21 +12,26 @@ export default function RegisterPanel () {
     const [surname, setSurname] = useState<string | null>(null)
     const [phone, setPhone] = useState<string | null>(null)
 
+    const navigate = useNavigate()
+
 
     const register = async (e: SyntheticEvent) => {
         e.preventDefault()
 
-        const response = await fetch('', {
+        const response = await fetch('http://localhost:8000/users/register', {
            method: 'POST',
            headers: {'Content-Type': 'application/json'},
            credentials: 'include',
            body: JSON.stringify({
                email,
                password,
+               name,
+               surname,
+               phone
            })
         });
         if (response.ok) {
-
+            return navigate(ROUTER_PATH.ACCOUNT_CREATED);
         } else { console.log(response.status, response.statusText); }
     }
 
@@ -122,7 +129,7 @@ export default function RegisterPanel () {
                             labelClassName={'register-panel-label'} 
                             inputType={'text'}
                             step={undefined} 
-                            value={phone} 
+                            value={phone}
                             inputClassName={'register-panel-input'} 
                             pleaceholder={'664 882 320'} 
                             onChange={handlePhone}
