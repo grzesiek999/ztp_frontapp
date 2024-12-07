@@ -4,7 +4,7 @@ import {useMedia} from "use-media";
 const DesktopTemplate = () => {
     return (
         <>
-            desktop
+            No Access
         </>
     )
 }
@@ -12,7 +12,7 @@ const DesktopTemplate = () => {
 const MobileTemplate = () => {
     return (
         <>
-            mobile
+            No Access
         </>
     )
 }
