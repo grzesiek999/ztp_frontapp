@@ -24,18 +24,17 @@ const ROUTER = createBrowserRouter(
             <Route path={ROUTER_PATH.HOME} element={<Home />} />
             <Route path={ROUTER_PATH.NO_ACCESS} element={<NoAccess />} />
             <Route path={ROUTER_PATH.LIBRARY} element={<Library />} />
-            <Route path={ROUTER_PATH.ACCOUNT_CREATED} element={<CreatedAccount />} />
 
             <Route element={<PublicRoute/>}>
                 <Route path={ROUTER_PATH.USER_LOGIN} element={<Login />} />
                 <Route path={ROUTER_PATH.ADMIN_LOGIN} element={<ALogin />} />
                 <Route path={ROUTER_PATH.REGISTER} element={<Register />} />
+                <Route path={ROUTER_PATH.ACCOUNT_CREATED} element={<CreatedAccount />} />
             </Route>
 
-            <Route path={ROUTER_PATH.USER_LIBRARY_BOOK} element={<UserLibraryBook />} />
 
             <Route element={<ProtectedRoute/>} >
-
+                <Route path={ROUTER_PATH.USER_LIBRARY_BOOK} element={<UserLibraryBook />} />
                 <Route path={ROUTER_PATH.USER_PROFIL} element={<UserProfilLayout />} >
                     <Route path={ROUTER_PATH.USER_PROFIL} element={<UserProfil />} />
                     <Route path={ROUTER_PATH.USER_BOOKS} element={null} />

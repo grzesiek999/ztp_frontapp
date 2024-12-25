@@ -1,16 +1,21 @@
 import {useMedia} from "use-media";
 import {useContext} from "react";
 import {UserAuth} from "../../../context/UserContext.tsx";
+import {useNavigate} from "react-router-dom";
+import {ROUTER_PATH} from "../../../routing/RouterPath.tsx";
 
 
 const DesktopTemplate = () => {
 
     const {logout} = useContext(UserAuth)
+    const navigate = useNavigate();
+
 
     const logoutButtonclick = () => {
-        sessionStorage.removeItem('access_token')
-        sessionStorage.removeItem('token_type')
-        logout()
+        sessionStorage.removeItem('access_token');
+        sessionStorage.removeItem('token_type');
+        logout();
+        navigate(ROUTER_PATH.HOME);
     }
 
     return (
