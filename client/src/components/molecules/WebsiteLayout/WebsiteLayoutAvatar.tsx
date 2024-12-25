@@ -7,7 +7,7 @@ import {ROUTER_PATH} from "../../../routing/RouterPath.tsx";
 
 const DesktopTemplate = () => {
 
-    const {logout} = useContext(UserAuth)
+    const {user, logout} = useContext(UserAuth)
     const navigate = useNavigate();
 
 
@@ -20,7 +20,7 @@ const DesktopTemplate = () => {
 
     return (
         <div className='website-layout-avatar-div'>
-            <img src={'/public/icons/user.png'} alt="user error" />
+            <img src={'/public/icons/user.png'} alt="user error" onClick={()=>{navigate(`/user/${user?.name}`)}}/>
             <button type='button' className='logout-button' onClick={logoutButtonclick}>Logout</button>
         </div>
     )

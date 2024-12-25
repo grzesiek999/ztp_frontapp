@@ -12,9 +12,9 @@ export const ROUTER_PATH = {
     ACCOUNT_CREATED: '/created_account',
 
     // User routes
-    USER_PROFIL: '/user/:user_id',                // profil usera, zmiana hasła, zmiana emaila
-    USER_BOOKS: '/user/:user_id/books',           // rezerwacje, wypozyczone, zwroty
-    USER_HISTORY: '/user/:user_id/history',       // books history
+    USER_PROFIL: '/user/:user_name',                // profil usera, zmiana hasła, zmiana emaila
+    USER_BOOKS: '/user/:user_name/books',           // rezerwacje, wypozyczone, zwroty
+    USER_HISTORY: '/user/:user_name/history',       // books history
     USER_LIBRARY_BOOK: '/library/:book_id',       // wypożyczanie książki, szczegóły ksiązki, zwrot ksiązki
     
 
