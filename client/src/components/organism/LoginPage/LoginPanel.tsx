@@ -1,7 +1,9 @@
-import { SyntheticEvent, useState } from "react"
+import {SyntheticEvent, useContext, useState} from "react"
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTER_PATH } from "../../../routing/RouterPath";
 import InputModel from "../../molecules/InputModels";
+import {mapApiResponseToUser} from "../../../utils/UserSession.tsx";
+import {UserAuth} from "../../../context/UserContext.tsx";
 
 
 
@@ -10,13 +12,36 @@ export default function LoginPanel ({admin}: {admin: boolean}) {
     const [email, setEmail] = useState<string | null>(null)
     const [password, setPassword] = useState<string | null>(null)
     const navigate = useNavigate();
+    const {login} = useContext(UserAuth);
+
+
+    const fetchUser = async () => {
+
+        const token = sessionStorage.getItem('access_token');
+
+        const response = await fetch('http://localhost:8000/users/dashboard', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            credentials: 'include',
+        });
+        if (response.ok) {
+            const data = await response.json();
+            const user = mapApiResponseToUser(data);
+            login(user);
+        } else {
+            console.log(response.status, response.statusText)
+        }
+    }
 
     
     const signin = async (e: SyntheticEvent) => {
         e.preventDefault();
     
         const response = await fetch('http://localhost:8000/auth/login', {
-            method: '',
+            method: 'POST',
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
             body: JSON.stringify({
@@ -26,8 +51,9 @@ export default function LoginPanel ({admin}: {admin: boolean}) {
         });
         if (response.ok) {
             const data = await response.json();
-            sessionStorage.setItem('access_token', data.acces_token)
+            sessionStorage.setItem('access_token', data.access_token)
             sessionStorage.setItem('token_type', data.token_type)
+            fetchUser();
             return navigate(ROUTER_PATH.HOME);
         } else {console.log(response.status, response.statusText)}
     }
