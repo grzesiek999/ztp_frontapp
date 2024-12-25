@@ -9,9 +9,9 @@ const DesktopTemplate = () => {
             <nav>
                 <span className="user-profil-nav-span">Navigation</span>
                 <ul>
-                    <li><Link to={ROUTER_PATH.PROFIL}>&#128073; User Panel</Link></li>
-                    <li><Link to={ROUTER_PATH.UBOOKS}>&#128073; Books</Link></li>
-                    <li><Link to={ROUTER_PATH.UHISTORY}>&#128073; History</Link></li>
+                    <li><Link to={ROUTER_PATH.USER_PROFIL}>&#128073; User Panel</Link></li>
+                    <li><Link to={ROUTER_PATH.USER_BOOKS}>&#128073; Books</Link></li>
+                    <li><Link to={ROUTER_PATH.USER_HISTORY}>&#128073; History</Link></li>
                 </ul>
             </nav>
         </div>

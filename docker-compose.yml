@@ -1,0 +1,15 @@
+services:
+  react-app:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: "reactapp"
+    restart: always
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    working_dir: /app
+    environment:
+      - NODE_ENV=development

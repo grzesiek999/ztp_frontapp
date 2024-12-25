@@ -1,0 +1,62 @@
+.user-profil-page-data-div-desktop {
+  box-sizing: border-box;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-profil-main-data-div-desktop{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  min-width: 100%;
+}
+
+.user-profil-main-data-div-desktop img{
+  width: 250px;
+  height: 250px;
+}
+
+.user-profil-data-spans-div-desktop {
+  box-sizing: border-box;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 75px 0 0 50px;
+}
+
+.user-profil-data-spans-div-desktop span{
+  color: #02212e;
+  letter-spacing: 1px;
+  font-family: "Special Elite", system-ui;
+  font-style: normal;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.user-data-main-span {
+  font-size: 32px !important;
+  font-weight: 600 !important;
+  margin-bottom: 30px !important;
+}
+
+.user-profil-change-data-div-desktop {
+  box-sizing: border-box;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+}
+
+.user-profil-change-data-div-desktop span a{
+  text-decoration: none;
+  color: #02212e;
+  letter-spacing: 1px;
+  font-family: "Special Elite", system-ui;
+  font-style: normal;
+  font-size: 26px;
+}
+
+.user-profil-change-data-div-desktop span{
+  margin-bottom: 25px;
+}
