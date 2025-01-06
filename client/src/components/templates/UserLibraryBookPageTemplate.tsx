@@ -1,10 +1,13 @@
 import {useMedia} from "use-media";
+import UserLibraryBookDetails from "../organism/Library/UserLibraryBookDetails.tsx";
+import {UserLibraryBookOptions} from "../organism/Library/UserLibraryBookOptions.tsx";
 
 
 const DesktopTemplate = () => {
     return (
-        <div>
-            ss
+        <div className={'user-library-book-page-template-desktop'}>
+            <UserLibraryBookDetails />
+            <UserLibraryBookOptions />
         </div>
     )
 }

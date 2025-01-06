@@ -1,12 +1,15 @@
 import {useMedia} from "use-media";
+import {useNavigate} from "react-router-dom";
 
 
 interface Book {
     id: number;
     title: string,
+    series: string,
+    lang_id: number;
+    author_id: number;
     name: string,
     surname: string,
-    language: string,
 }
 
 type LibraryResultsProps = {
@@ -14,17 +17,20 @@ type LibraryResultsProps = {
 }
 
 const DesktopTemplate = ({books}: LibraryResultsProps) => {
+
+    const navigate = useNavigate();
+
     return (
         <div className={"library-results-div-desktop"}>
             <span className={'search-results-span'}>Wyszukiwanie:</span>
             <div className={'results-div-grid-desktop'}>
                 {books.map((book: Book) => (
-                    <div key={book.id} className={'single-result-book-div-desktop'}>
+                    <div key={book.id} className={'single-result-book-div-desktop'} onClick={()=>{ navigate(`/library/${book.id}`); }}>
                         <img src={'/public/images/book-icon.png'} alt={'book image error'}/>
                         <div className={'book-main-data-div-desktop'}>
-                            <span>Title</span>
-                            <span>Name Surname</span>
-                            <span>lang. english</span>
+                            <span>{book.title}</span>
+                            <span>{book.name} {book.surname}</span>
+                            <span>{book.series}</span>
                         </div>
                     </div>
                     ))}

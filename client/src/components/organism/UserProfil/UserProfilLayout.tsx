@@ -1,16 +1,21 @@
 import { Link, Outlet } from "react-router-dom"
 import useMedia from "use-media"
 import { ROUTER_PATH } from "../../../routing/RouterPath"
+import {useContext} from "react";
+import {UserAuth} from "../../../context/UserContext.tsx";
 
 
 const DesktopTemplate = () => {
+
+    const {user} = useContext(UserAuth);
+
     return(
         <div className="user-profil-layout-nav-div-desktop">
             <nav>
                 <span className="user-profil-nav-span">Navigation</span>
                 <ul>
                     <li><Link to={ROUTER_PATH.USER_PROFIL}>&#128073; User Panel</Link></li>
-                    <li><Link to={ROUTER_PATH.USER_BOOKS}>&#128073; Books</Link></li>
+                    <li><Link to={`/user/${user?.id}/books`}>&#128073; Books</Link></li>
                     <li><Link to={ROUTER_PATH.USER_HISTORY}>&#128073; History</Link></li>
                 </ul>
             </nav>

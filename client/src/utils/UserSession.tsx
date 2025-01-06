@@ -1,4 +1,5 @@
 type User = {
+    id: number;
     email: string;
     name: string;
     surname: string;
@@ -10,6 +11,7 @@ type User = {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function mapApiResponseToUser(data: any): User {
     return {
+        id: data.user_data.id,
         email: data.user_data.email,
         name: data.user_data.name,
         surname: data.user_data.surname,

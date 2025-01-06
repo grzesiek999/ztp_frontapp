@@ -1,0 +1,13 @@
+.book-detail-image-div {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-detail-image-div img{
+  width: 300px;
+  -webkit-box-shadow: 0px 0px 24px 20px rgba(220, 212, 201, 1);
+  -moz-box-shadow: 0px 0px 24px 20px rgba(220, 212, 201, 1);
+  box-shadow: 0px 0px 24px 20px rgba(220, 212, 201, 1);
+}

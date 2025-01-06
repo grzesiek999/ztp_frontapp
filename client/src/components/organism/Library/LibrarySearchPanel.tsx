@@ -2,19 +2,9 @@ import useMedia from "use-media"
 import LibrarySortFilters from "../../molecules/Library/LibrarySortFilters"
 import LibrarySearchBar from "../../molecules/Library/LibrarySearchBar"
 
-interface Book {
-    id: number;
-    title: string,
-    name: string,
-    surname: string,
-    language: string,
-}
 
-type LibrarySearchPanelProps = {
-    setBooks: (books: Book[]) => void;
-}
 
-const DesktopTemplate = ({setBooks}: LibrarySearchPanelProps) => {
+const DesktopTemplate = () => {
     return (
         <div className="library-search-panel-div-desktop">
             <LibrarySearchBar />
@@ -31,12 +21,12 @@ const MobileTemplate = () => {
     )
 }
 
-export default function LibrarySearchPanel ({setBooks}: LibrarySearchPanelProps) {
+export default function LibrarySearchPanel () {
     const isMobile = useMedia({maxWidth: 1170})
 
     return (
         <>
-            {isMobile ? <MobileTemplate /> : <DesktopTemplate setBooks={setBooks} />}
+            {isMobile ? <MobileTemplate /> : <DesktopTemplate />}
         </>
     )
 }

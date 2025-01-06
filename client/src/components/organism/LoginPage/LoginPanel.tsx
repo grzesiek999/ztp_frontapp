@@ -13,6 +13,7 @@ export default function LoginPanel ({admin}: {admin: boolean}) {
     const [password, setPassword] = useState<string | null>(null)
     const navigate = useNavigate();
     const {login} = useContext(UserAuth);
+    const [message, setMessage] = useState<string | null>(null)
 
 
     const fetchUser = async () => {
@@ -55,7 +56,10 @@ export default function LoginPanel ({admin}: {admin: boolean}) {
             sessionStorage.setItem('token_type', data.token_type)
             fetchUser();
             return navigate(ROUTER_PATH.HOME);
-        } else {console.log(response.status, response.statusText)}
+        } else {
+            setMessage("Incorrect enail or passoword !")
+            console.log(response.status, response.statusText);
+        }
     }
 
     const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -95,6 +99,7 @@ export default function LoginPanel ({admin}: {admin: boolean}) {
                     onChange={handlePassword}
                 />
                 <button type="submit" className="login-panel-login-button">LogIn</button>
+                {message && <span className="login-panel-message">{message}</span>}
             </form>
             {!admin && <Link to={ROUTER_PATH.REGISTER}>Create Account</Link> }
             <Link to={'/'} className="login-panel-forget-password-span">Forget Password ?</Link>

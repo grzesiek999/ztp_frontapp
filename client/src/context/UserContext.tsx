@@ -4,6 +4,7 @@ import {SESSION} from "../constant/Session.tsx";
 
 
 type User = {
+    id: number;
     email: string;
     name: string;
     surname: string;
