@@ -1,10 +1,11 @@
 import useMedia from "use-media"
+import UserProfilData from "../organism/UserProfil/UserProfilData.tsx";
 
 
 const DesktopTemplate = () => {
     return(
         <div className="user-profil-page-template-div-desktop">
-            usr image
+            <UserProfilData />
         </div>
     )
 }

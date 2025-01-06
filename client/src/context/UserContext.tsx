@@ -6,7 +6,11 @@ import {SESSION} from "../constant/Session.tsx";
 type User = {
     id: number;
     email: string;
-    is_admin: boolean;
+    name: string;
+    surname: string;
+    phone: string;
+    card_number: string;
+    role: string;
 }
 
 export type UserContextType = {

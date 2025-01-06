@@ -7,13 +7,15 @@ import AdminRoute from "./AdminRoute.tsx";
 import Home from "../pages/Home.tsx";
 import NoAccess from "../pages/NoAccess.tsx";
 import Login from "../pages/Login.tsx";
-import ALogin from "../pages/ALogin.tsx";
 import Register from "../pages/Register.tsx";
 import AddBook from "../pages/AddBook.tsx";
 import WebsiteLayout from "../components/organism/WebsiteLayout/WebsiteLayout.tsx";
 import Library from "../pages/Library.tsx";
 import UserProfil from '../pages/UserProfile.tsx';
 import UserProfilLayout from '../components/organism/UserProfil/UserProfilLayout.tsx';
+import UserLibraryBook from "../pages/UserLibraryBook.tsx";
+import CreatedAccount from "../pages/CreatedAccount.tsx";
+import UserBooks from "../pages/UserBooks.tsx";
 
 
 const ROUTER = createBrowserRouter(
@@ -25,15 +27,16 @@ const ROUTER = createBrowserRouter(
 
             <Route element={<PublicRoute/>}>
                 <Route path={ROUTER_PATH.USER_LOGIN} element={<Login />} />
-                <Route path={ROUTER_PATH.ADMIN_LOGIN} element={<ALogin />} />
                 <Route path={ROUTER_PATH.REGISTER} element={<Register />} />
+                <Route path={ROUTER_PATH.ACCOUNT_CREATED} element={<CreatedAccount />} />
             </Route>
-            
+
+
             <Route element={<ProtectedRoute/>} >
-                <Route path={ROUTER_PATH.USER_LIBRARY_BOOK} element={null} />
+                <Route path={ROUTER_PATH.USER_LIBRARY_BOOK} element={<UserLibraryBook />} />
                 <Route path={ROUTER_PATH.USER_PROFIL} element={<UserProfilLayout />} >
                     <Route path={ROUTER_PATH.USER_PROFIL} element={<UserProfil />} />
-                    <Route path={ROUTER_PATH.USER_BOOKS} element={null} />
+                    <Route path={ROUTER_PATH.USER_BOOKS} element={<UserBooks />} />
                     <Route path={ROUTER_PATH.USER_HISTORY} element={null} />
                 </Route>
             </Route>

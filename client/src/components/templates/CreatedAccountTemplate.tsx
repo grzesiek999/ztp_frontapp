@@ -4,25 +4,25 @@ import {useMedia} from "use-media";
 const DesktopTemplate = () => {
     return (
         <div className={'created-account-template-div-desktop'}>
-            <span>No access !</span>
+            <span>Account created successfully !</span>
         </div>
     )
 }
 
 const MobileTemplate = () => {
     return (
-        <>
-            No Access
-        </>
+        <div>
+
+        </div>
     )
 }
 
-export default function NoAccessPageTemplate() {
+export default function CreatedAccountTemplate() {
     const isMobile = useMedia({maxWidth: 1170})
 
     return (
-        <main>
+        <>
             {isMobile ? <MobileTemplate /> : <DesktopTemplate />}
-        </main>
+        </>
     )
 }

@@ -1,0 +1,30 @@
+.user-library-book-details-div-desktop {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  min-width: 100%;
+  padding: 50px 100px;
+}
+
+.book-details-div-desktop {
+  padding: 50px 100px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  color: #02212e;
+  letter-spacing: 1px;
+  font-family: "Special Elite", system-ui;
+  font-style: normal;
+}
+
+.book-detail-title-span {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.book-detail-content-span {
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 25px;
+}

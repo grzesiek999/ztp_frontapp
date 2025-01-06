@@ -1,0 +1,17 @@
+.created-account-template-div-desktop{
+  box-sizing: border-box;
+  min-width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.created-account-template-div-desktop span {
+  color: #02212e;
+  font-size: 42px;
+  letter-spacing: 1px;
+  font-family: "Special Elite", system-ui;
+  font-weight: 600;
+  font-style: normal;
+  margin-top: 250px;
+}
