@@ -53,20 +53,23 @@ export default function UserBooksHistory() {
     const isMobile = useMedia({maxWidth: 1170});
     const [results, setResults] = useState<Book[]>([]);
     const [enrichedBooks, setEnrichedBooks] = useState<Book[]>([]);
-    const {user_id} = useParams();
+    const token = sessionStorage.getItem('access_token');
 
 
     const fechBooks = () => {
-        const response = fetch(`http://localhost:8000//rental/get-returned-by-user-id?id=${user_id}`, {
+        const responseReturned = fetch(`http://localhost:8000/rental/get-my-returned`, {
             method: "GET",
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
             credentials: 'include',
         });
-        response.then(response => {
-            if (!response.ok) { throw new Error(`HTTP error! status: ${response.status}`); }
-            return response.json();
+        responseReturned.then(responseReturned => {
+            if (!responseReturned.ok) { throw new Error(`HTTP error! status: ${responseReturned.status}`); }
+            return responseReturned.json();
         }).then(data => {
-            setResults(data);
+
         }).catch(error => {
            console.error('Error:', error);
         });

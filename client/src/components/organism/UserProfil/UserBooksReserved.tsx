@@ -1,6 +1,6 @@
 import {useMedia} from "use-media";
-import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
 
 
 interface Book {
@@ -51,11 +51,58 @@ const MobileTemplate = () => {
 
 export default function UserBooksReserved() {
     const isMobile = useMedia({maxWidth: 1170});
+    const [results, setResults] = useState<Book[]>([]);
+    const [enrichedBooks, setEnrichedBooks] = useState<Book[]>([]);
+    const token = sessionStorage.getItem('access_token');
 
+
+    const fechBooks = () => {
+        const responseReturned = fetch(`http://localhost:8000/reservation/get-my-reserved`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            credentials: 'include',
+        });
+        responseReturned.then(responseReturned => {
+            if (!responseReturned.ok) { throw new Error(`HTTP error! status: ${responseReturned.status}`); }
+            return responseReturned.json();
+        }).then(data => {
+
+        }).catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    const enrichBooksWithAuthors = async () => {
+        const booksWithAuthors = await Promise.all(
+            results.map(async (book) => {
+                const response = await fetch(`http://localhost:8000/person/get-by-id?id=${book.author_id}`);
+                const authorData = await response.json();
+                return {
+                    ...book,
+                    name: authorData.name,
+                    surname: authorData.surname,
+                };
+            })
+        );
+        setEnrichedBooks(booksWithAuthors);
+    };
+
+    useEffect(() => {
+        fechBooks();
+    }, []);
+
+    useEffect(() => {
+        if (results.length > 0) {
+            enrichBooksWithAuthors();
+        }
+    }, [results]);
 
     return (
         <>
-            {isMobile ? <MobileTemplate/> : <DesktopTemplate books={} />}
+            {isMobile ? <MobileTemplate/> : <DesktopTemplate books={enrichedBooks} />}
         </>
     )
 }

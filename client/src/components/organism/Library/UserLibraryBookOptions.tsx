@@ -22,7 +22,9 @@ const DesktopTemplate = ({reserv, rent, ret, rentalButtonClassName, reservationB
                 <button type={'button'} className={rentalButtonClassName} onClick={rent}>Rent</button>
                 <button type={'button'} className={returnButtonClassName} onClick={ret}>Return</button>
             </div>
-            {message && <span className="book-options-message-span">{message}</span>}
+            <div className={'book-options-message-span-div'}>
+                {message && <span className="book-options-message-span">{message}</span>}
+            </div>
         </>
     );
 }
@@ -69,27 +71,6 @@ export function UserLibraryBookOptions () {
         })
     }
 
-    const getCopyByUserId = () => {
-        fetch(`http://localhost:8000/copy/get-by-book-id?id=${book_id}`, {
-            method: "GET",
-            headers: {'Content-Type': 'application/json'},
-            credentials: 'include',
-        }).then((response) => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        }).then((data) => {
-            if (data.length > 0 && data[0].rented !== undefined) {
-                if (!data[0].rented) {
-                    setRentalButtonClass('user-library-book-options-active-button');
-                    setCopyId(data[0].id)
-                }
-            } else {
-                console.error('Unexpected data format or empty array:', data);
-            }
-        })
-    }
 
     const rentBook = async (e: SyntheticEvent) => {
         e.preventDefault();
@@ -107,7 +88,12 @@ export function UserLibraryBookOptions () {
         })
         if (response.ok) {
             setMessage("Book rented successfully");
-        }else {console.log(response.status, response.statusText); }
+            setRentalButtonClass('user-library-book-options-no-active-button')
+        }else {
+            setMessage("Book is rented, you can reserv this book !");
+            setRentalButtonClass('user-library-book-options-no-active-button')
+            console.log(response.status, response.statusText);
+        }
 
     }
 
@@ -126,19 +112,28 @@ export function UserLibraryBookOptions () {
         })
         if (response.ok) {
             setMessage("Book reservation successfully");
-        }else {console.log(response.status, response.statusText); }
+            setReservationButtonClass('user-library-book-options-no-active-button')
+        }else {
+            setMessage("This Book is reserved for you arleady !");
+            setReservationButtonClass('user-library-book-options-no-active-button')
+            console.log(response.status, response.statusText);
+        }
     }
 
     const returnBook = async () => {
-        const response = await fetch(`http://localhost:8000/books/get-by-id?id=${book_id}`, {
+        const response = await fetch(``, {
             method: "GET",
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
 
         })
         if (response.ok) {
-            setMessage("Book renturned successfully");
-        }else {console.log(response.status, response.statusText); }
+            setMessage("Book returned successfully");
+            setReturnButtonClass('user-library-book-options-no-active-button')
+        }else {
+            setMessage("You dont have rent this book !");
+            console.log(response.status, response.statusText);
+        }
     }
 
     useEffect(() => {
