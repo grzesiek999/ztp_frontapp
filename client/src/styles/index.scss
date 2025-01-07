@@ -73,3 +73,11 @@
 @use "./components/molecules/Library/book-detail-image-div";
 
 @use "./components/organism/LibraryPage/user-library-book-options-div-desktop";
+
+@use "./components/templates/user-books-page-tempate-div-desktop.scss";
+
+@use "./components/templates/admin-library-book-template-desktop.scss";
+
+@use "./components/templates/user-books-history-page-template-desktop.scss";
+
+@use "./components/templates/add-book-page-template-desktop.scss";

@@ -1,8 +1,7 @@
 import {useMedia} from "use-media";
 import UserLibraryBookAvatar from "../../molecules/Library/UserLibraryBookAvatar.tsx";
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
-import {UserAuth} from "../../../context/UserContext.tsx";
 
 
 interface Book  {
@@ -24,10 +23,9 @@ type UserLibraryBookProps = {
     book: Book | null;
     bookLanguage: string | null;
     author: Author | null;
-    isAdmin: boolean;
 }
 
-const DesktopTemplate = ({book, bookLanguage, author, isAdmin}: UserLibraryBookProps ) => {
+const DesktopTemplate = ({book, bookLanguage, author}: UserLibraryBookProps ) => {
 
     return (
         <div className={'user-library-book-details-div-desktop'}>
@@ -41,7 +39,6 @@ const DesktopTemplate = ({book, bookLanguage, author, isAdmin}: UserLibraryBookP
                 <span className={'book-detail-content-span'}>{book?.series}</span>
                 <span className={'book-detail-title-span'}>Language:</span>
                 <span className={'book-detail-content-span'}>{bookLanguage}</span>
-                {isAdmin ? <Link to={''}>Edit Book details &#128073;</Link> : null}
             </div>
         </div>
     )
@@ -65,8 +62,6 @@ export default function UserLibraryBookDetails () {
     const [book, setBook] = useState<Book | null>(null);
     const [author, setAuthor] = useState<Author | null>(null);
     const [lang, setLang] = useState<string | null>(null);
-    const [isAdmin, setIsAdmin] = useState<boolean>(false);
-    const {user} = useContext(UserAuth);
 
 
 
@@ -113,12 +108,11 @@ export default function UserLibraryBookDetails () {
     useEffect(()=>{
         fetchAuthor();
         fetchLanguage();
-        if(user?.role==="Admin") {setIsAdmin(true);}
     }, [book])
 
     return (
         <>
-            {isMobile ? <MobileTemplate /> : <DesktopTemplate book={book} bookLanguage={lang} author={author} isAdmin={isAdmin} />}
+            {isMobile ? <MobileTemplate /> : <DesktopTemplate book={book} bookLanguage={lang} author={author} />}
         </>
     )
 }

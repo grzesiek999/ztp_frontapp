@@ -22,7 +22,7 @@ const DesktopTemplate = ({reserv, rent, ret, rentalButtonClassName, reservationB
                 <button type={'button'} className={rentalButtonClassName} onClick={rent}>Rent</button>
                 <button type={'button'} className={returnButtonClassName} onClick={ret}>Return</button>
             </div>
-            {message && <span>{message}</span>}
+            {message && <span className="book-options-message-span">{message}</span>}
         </>
     );
 }

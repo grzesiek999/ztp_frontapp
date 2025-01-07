@@ -13,16 +13,16 @@ interface Book {
     surname: string,
 }
 
-type UserBooksRentedProps = {
+type UserBooksReservedProps = {
     books: Book[];
 }
 
-const DesktopTemplate = ({books} : UserBooksRentedProps) => {
+const DesktopTemplate = ({books} : UserBooksReservedProps) => {
     const navigate = useNavigate();
 
     return (
         <div className="users-book-in-profile-div-dektop-template">
-            <span className="rented-books-title-span">Rented books:</span>
+            <span className="rented-books-title-span">Reserved books:</span>
             <div className={'results-div-grid-desktop'}>
                 {books.map((book: Book) => (
                     <div key={book.id} className={'single-result-book-div-desktop'} onClick={() => {
@@ -49,10 +49,9 @@ const MobileTemplate = () => {
     );
 }
 
-export default function UserBooksRented() {
+export default function UserBooksReserved() {
     const isMobile = useMedia({maxWidth: 1170});
 
-    
 
     return (
         <>

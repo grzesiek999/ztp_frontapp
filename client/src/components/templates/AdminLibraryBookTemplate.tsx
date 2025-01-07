@@ -1,28 +1,32 @@
 import {useMedia} from "use-media";
 
 
+
 const DesktopTemplate = () => {
-    return(
-        <div className="add-book-page-template-desktop">
+
+    return (
+        <div className='admin-library-book-template-desktop'>
             
         </div>
     )
 }
 
+
 const MobileTemplate = () => {
+
     return (
-        <>
-            mobile
-        </>
+        <div>
+
+        </div>
     )
 }
 
-export default function AddBookPageTemplate() {
+export default function AdminLibraryBookTemplate () {
     const isMobile = useMedia({maxWidth: 1170})
-
+    
     return (
-        <main>
+        <>
             {isMobile ? <MobileTemplate /> : <DesktopTemplate />}
-        </main>
+        </>
     )
 }
