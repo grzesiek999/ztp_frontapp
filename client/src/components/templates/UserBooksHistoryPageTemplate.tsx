@@ -1,15 +1,14 @@
 import {useMedia} from "use-media";
-import UserBooksRented from "../organism/UserProfil/UserBooksRented";
-import UserBooksReserved from "../organism/UserProfil/UserBooksReserved";
+import UserBooksHistory from "../organism/UserProfil/UserBooksHistory";
+
 
 
 
 
 const DesktopTemplate = () => {
     return (
-        <div className={'user-books-page-tempate-div-desktop'}>
-            <UserBooksRented />
-            <UserBooksReserved />
+        <div className={'user-books-history-page-template-desktop'}>
+            <UserBooksHistory />
         </div>
     );
 }
@@ -22,7 +21,7 @@ const MobileTemplate = () => {
     );
 }
 
-export default function UserBooksPageTemplate() {
+export default function UserBooksHistoryPageTemplate() {
     const isMobile = useMedia({maxWidth: 1170})
 
     return (

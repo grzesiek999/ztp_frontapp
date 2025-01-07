@@ -16,6 +16,8 @@ import UserProfilLayout from '../components/organism/UserProfil/UserProfilLayout
 import UserLibraryBook from "../pages/UserLibraryBook.tsx";
 import CreatedAccount from "../pages/CreatedAccount.tsx";
 import UserBooks from "../pages/UserBooks.tsx";
+import UserBooksHistory from '../pages/UserBooksHistory.tsx';
+import AdminLibraryBook from '../pages/AdminLibraryBook.tsx';
 
 
 const ROUTER = createBrowserRouter(
@@ -37,12 +39,13 @@ const ROUTER = createBrowserRouter(
                 <Route path={ROUTER_PATH.USER_PROFIL} element={<UserProfilLayout />} >
                     <Route path={ROUTER_PATH.USER_PROFIL} element={<UserProfil />} />
                     <Route path={ROUTER_PATH.USER_BOOKS} element={<UserBooks />} />
-                    <Route path={ROUTER_PATH.USER_HISTORY} element={null} />
+                    <Route path={ROUTER_PATH.USER_HISTORY} element={<UserBooksHistory />} />
                 </Route>
             </Route>
 
             <Route element={<AdminRoute/>} >
                 <Route path={ROUTER_PATH.ADD_BOOK} element={<AddBook />} />
+                <Route path={ROUTER_PATH.ADMIN_LIBRARY_BOOK} element={<AdminLibraryBook />} />
             </Route>
         </Route>
     )
