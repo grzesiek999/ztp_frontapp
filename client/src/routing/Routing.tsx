@@ -26,6 +26,8 @@ const ROUTER = createBrowserRouter(
             <Route path={ROUTER_PATH.HOME} element={<Home />} />
             <Route path={ROUTER_PATH.NO_ACCESS} element={<NoAccess />} />
             <Route path={ROUTER_PATH.LIBRARY} element={<Library />} />
+            <Route path={ROUTER_PATH.EVENTS} element={null} />
+            <Route path={ROUTER_PATH.ABOUT_US} element={null} />
 
             <Route element={<PublicRoute/>}>
                 <Route path={ROUTER_PATH.USER_LOGIN} element={<Login />} />
@@ -35,15 +37,24 @@ const ROUTER = createBrowserRouter(
 
 
             <Route element={<ProtectedRoute/>} >
-                <Route path={ROUTER_PATH.USER_LIBRARY_BOOK} element={<UserLibraryBook />} />
                 <Route path={ROUTER_PATH.USER_PROFIL} element={<UserProfilLayout />} >
                     <Route path={ROUTER_PATH.USER_PROFIL} element={<UserProfil />} />
+                    <Route path={ROUTER_PATH.USER_CHANGE_EMAIL} element={null} />
+                    <Route path={ROUTER_PATH.USER_CHANGE_PASSWORD} element={null} />
+                    <Route path={ROUTER_PATH.USER_CHANGE_PHONE} element={null} />
                     <Route path={ROUTER_PATH.USER_BOOKS} element={<UserBooks />} />
                     <Route path={ROUTER_PATH.USER_HISTORY} element={<UserBooksHistory />} />
                 </Route>
+                <Route path={ROUTER_PATH.USER_LIBRARY_BOOK} element={<UserLibraryBook />} />
             </Route>
 
             <Route element={<AdminRoute/>} >
+                <Route path={ROUTER_PATH.ADMIN_PROFIL} element={null} >
+                    <Route path={ROUTER_PATH.ADMIN_PROFIL} element={null} />
+                    <Route path={ROUTER_PATH.ADMIN_CHANGE_EMAIL} element={null} />
+                    <Route path={ROUTER_PATH.ADMIN_CHANGE_PASSWORD} element={null} />
+                    <Route path={ROUTER_PATH.ADMIN_CHANGE_PHONE} element={null} />
+                </Route>
                 <Route path={ROUTER_PATH.ADD_BOOK} element={<AddBook />} />
                 <Route path={ROUTER_PATH.ADMIN_LIBRARY_BOOK} element={<AdminLibraryBook />} />
             </Route>
