@@ -1,4 +1,5 @@
 import { SyntheticEvent, useEffect, useState } from "react";
+import InputModel from "../../molecules/InputModels";
 
 interface Book {
     id: number | null;
@@ -65,15 +66,124 @@ type AddBookOrganismTypes = {
     publisherList: Publisher[];
     languageList: Language[];
     formList: Form[];
+    onSubmit: (e: SyntheticEvent) => void;
 }
 
-const DesktopTemplate = ({book, edition, copy, personList, publisherList, languageList, formList}: AddBookOrganismTypes) => {
+const DesktopTemplate = ({book, edition, copy, personList, publisherList, languageList, formList, onSubmit}: AddBookOrganismTypes) => {
     
     return (
         <div className={''}>
+            <form onSubmit={onSubmit}>
+                <InputModel
+                    containerClassName={'addBook-input-container'} 
+                    labelContent={'Book title:'} 
+                    labelClassName={'addBook-label'} 
+                    inputType={'text'}
+                    step={undefined} 
+                    value={book.title} 
+                    inputClassName={'addBook-input'} 
+                    pleaceholder={'Title'} 
+                    onChange={handleEmail}
+                />
+                <InputModel
+                    containerClassName={'addBook-input-container'} 
+                    labelContent={'Book series:'} 
+                    labelClassName={'addBook-label'} 
+                    inputType={'text'}
+                    step={undefined} 
+                    value={book.series} 
+                    inputClassName={'addBook-input'} 
+                    pleaceholder={'Series'} 
+                    onChange={handleEmail}
+                />
+
+                lang_id: book.lang_id,
+                author_id: book.author_id,        
+
+                <InputModel
+                    containerClassName={'addBook-input-container'} 
+                    labelContent={'Book edition title:'} 
+                    labelClassName={'addBook-label'} 
+                    inputType={'text'}
+                    step={undefined} 
+                    value={edition.ed_title} 
+                    inputClassName={'addBook-input'} 
+                    pleaceholder={'Edition title'} 
+                    onChange={handleEmail}
+                />
+                <InputModel
+                    containerClassName={'addBook-input-container'} 
+                    labelContent={'Book edition series:'} 
+                    labelClassName={'addBook-label'} 
+                    inputType={'text'}
+                    step={undefined} 
+                    value={edition.ed_series} 
+                    inputClassName={'addBook-input'} 
+                    pleaceholder={'Edition series'} 
+                    onChange={handleEmail}
+                />
+                <InputModel
+                    containerClassName={'addBook-input-container'} 
+                    labelContent={'Book edition number:'} 
+                    labelClassName={'addBook-label'} 
+                    inputType={'number'}
+                    step={1} 
+                    value={edition.ed_num} 
+                    inputClassName={'addBook-input'} 
+                    pleaceholder={'0'} 
+                    onChange={handleEmail}
+                />
+                <InputModel
+                    containerClassName={'addBook-input-container'} 
+                    labelContent={'Book edition year:'} 
+                    labelClassName={'addBook-label'} 
+                    inputType={'number'}
+                    step={1} 
+                    value={edition.ed_year} 
+                    inputClassName={'addBook-input'} 
+                    pleaceholder={'Edition year'} 
+                    onChange={handleEmail}
+                />
+
+                illustrator_id: , 
+                translator_id: , 
+                ed_lang_id: ,
+                publisher_id: ,
+                form_id: ,
+
+                <InputModel
+                    containerClassName={'addBook-input-container'} 
+                    labelContent={'Book edition isbn:'} 
+                    labelClassName={'addBook-label'} 
+                    inputType={'number'}
+                    step={1} 
+                    value={edition.isbn} 
+                    inputClassName={'addBook-input'} 
+                    pleaceholder={'Edition isbn'} 
+                    onChange={handleEmail}
+                />
+                <InputModel
+                    containerClassName={'addBook-input-container'} 
+                    labelContent={'Book edition ukd:'} 
+                    labelClassName={'addBook-label'} 
+                    inputType={'text'}
+                    step={undefined} 
+                    value={edition.ukd} 
+                    inputClassName={'addBook-input'} 
+                    pleaceholder={'Edition ukd'} 
+                    onChange={handleEmail}
+                />
+                <button type="submit" className="">Add Book</button>
+            </form>
 
         </div>
     )
+}
+
+type updateSingleFieldProps = {
+    setFunction: () => void;
+    field: any;
+    value: any;
 }
 
 
@@ -111,6 +221,19 @@ export default function AddBookOrganism () {
     const [publisherList, setPublisherList] = useState<Publisher[]>([])
     const [languageList, setLanguageList] = useState<Language[]>([])
     const [formList, setFormList] = useState<Form[]>([])
+    const [newBookId, setNewBookId] = useState<number | null>(null)
+
+    const updateSingleField = ({setFunction, field, value}: updateSingleFieldProps) => {
+        setFunction(prev => ({
+            ...prev,
+            field: value,
+        }));
+    };
+
+    const handleBookTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if(e.target.value === '') { setEmail(null); }
+        else { setEmail(e.target.value); }
+    }
    
 
     const fetchPersonList = () => {
@@ -170,24 +293,46 @@ export default function AddBookOrganism () {
     }
 
     const AddCopy = async () => {
+        let temp;
+
+        const fetchBook = await fetch(`get edition by book id`, {
+            method: "GET",
+            headers: {'Content-Type': 'application/json'},
+            credentials: 'include',
+        });
+        if(fetchBook.ok){
+            const data = await fetchBook.json();
+            temp = data.id;
+        }else { console.log(fetchBook.status, fetchBook.statusText); }
+
         const response = await fetch(``, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
             body: JSON.stringify({
-                ed_id: copy.ed_id
+                ed_id: temp
             })
         });
         if(response.ok) {}else {console.log(response.status, response.statusText)}
     }
 
     const AddEdition = async () => {
+        const fetchBook = await fetch(`get book_id by book title`, {
+            method: "GET",
+            headers: {'Content-Type': 'application/json'},
+            credentials: 'include',
+        });
+        if(fetchBook.ok){
+            const data = await fetchBook.json();
+            setNewBookId(data.id);
+        }else { console.log(fetchBook.status, fetchBook.statusText); }
+
         const response = await fetch(``, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
             body: JSON.stringify({
-                book_id: ,
+                book_id: newBookId,
                 ed_title: edition.ed_title,
                 ed_series: edition.ed_series,
                 illustrator_id: , 
@@ -239,6 +384,7 @@ export default function AddBookOrganism () {
             publisherList={publisherList}
             languageList={languageList}
             formList={formList}
+            onSubmit={AddBook}
         />
     )
 
