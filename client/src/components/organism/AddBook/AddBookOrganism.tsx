@@ -1,5 +1,9 @@
-import { SyntheticEvent, useEffect, useState } from "react";
+import {SyntheticEvent, useEffect, useState} from "react";
 import InputModel from "../../molecules/InputModels";
+import SearchPersonList from "../../molecules/SearchPersonList.tsx";
+import SearchLanguageList from "../../molecules/SearchLanguageList.tsx";
+import SearchPublisherList from "../../molecules/SearchPublisherList.tsx";
+import SearchFormList from "../../molecules/SearchFormList.tsx";
 
 interface Book {
     id: number | null;
@@ -23,12 +27,6 @@ interface Edition {
     form_id: number | null; 
     isbn: number | null; 
     ukd: string | null; 
-}
-
-interface Copy {
-    id: number | null;
-    ed_id: number | null;
-    rented: boolean | null;
 }
 
 type Person = {
@@ -56,20 +54,57 @@ type Language = {
     lang: string;
 }
 
-
-
 type AddBookOrganismTypes = {
     book: Book;
     edition: Edition;
-    copy: Copy;
     personList: Person[];
     publisherList: Publisher[];
     languageList: Language[];
     formList: Form[];
     onSubmit: (e: SyntheticEvent) => void;
+    handleBookTitle: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleBookSeries: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleBookAuthorId: (value: number) => void;
+    handleBookLanguageId: (value: number) => void;
+    handleBookEditionTitle: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleBookEditionSeries: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleBookEditionNum: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleBookEditionYear: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleBookEditionIlustratorId: (value: number) => void;
+    handleBookEditionTranslatorId: (value: number) => void;
+    handleBookEditionLanguageId: (value: number) => void;
+    handleBookEditionPublisherId: (value: number) => void;
+    handleBookEditionFormId: (value: number) => void;
+    handleBookEditionIsbn: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleBookEditionUkd: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const DesktopTemplate = ({book, edition, copy, personList, publisherList, languageList, formList, onSubmit}: AddBookOrganismTypes) => {
+
+const DesktopTemplate =
+    ({
+         book,
+         edition,
+         personList,
+         publisherList,
+         languageList,
+         formList,
+         onSubmit,
+         handleBookTitle,
+         handleBookSeries,
+        handleBookAuthorId,
+        handleBookLanguageId,
+        handleBookEditionTitle,
+        handleBookEditionSeries,
+        handleBookEditionNum,
+        handleBookEditionYear,
+        handleBookEditionIlustratorId,
+        handleBookEditionTranslatorId,
+        handleBookEditionLanguageId,
+        handleBookEditionPublisherId,
+        handleBookEditionFormId,
+        handleBookEditionIsbn,
+        handleBookEditionUkd,
+    }: AddBookOrganismTypes) => {
     
     return (
         <div className={''}>
@@ -83,7 +118,7 @@ const DesktopTemplate = ({book, edition, copy, personList, publisherList, langua
                     value={book.title} 
                     inputClassName={'addBook-input'} 
                     pleaceholder={'Title'} 
-                    onChange={handleEmail}
+                    onChange={handleBookTitle}
                 />
                 <InputModel
                     containerClassName={'addBook-input-container'} 
@@ -94,12 +129,10 @@ const DesktopTemplate = ({book, edition, copy, personList, publisherList, langua
                     value={book.series} 
                     inputClassName={'addBook-input'} 
                     pleaceholder={'Series'} 
-                    onChange={handleEmail}
+                    onChange={handleBookSeries}
                 />
-
-                lang_id: book.lang_id,
-                author_id: book.author_id,        
-
+                <SearchPersonList personList={personList} handleValue={handleBookAuthorId} selectSpan={"Select book author"}/>
+                <SearchLanguageList languageList={languageList} handleValue={handleBookLanguageId} selectSpan={"Select book language"}/>
                 <InputModel
                     containerClassName={'addBook-input-container'} 
                     labelContent={'Book edition title:'} 
@@ -109,7 +142,7 @@ const DesktopTemplate = ({book, edition, copy, personList, publisherList, langua
                     value={edition.ed_title} 
                     inputClassName={'addBook-input'} 
                     pleaceholder={'Edition title'} 
-                    onChange={handleEmail}
+                    onChange={handleBookEditionTitle}
                 />
                 <InputModel
                     containerClassName={'addBook-input-container'} 
@@ -120,7 +153,7 @@ const DesktopTemplate = ({book, edition, copy, personList, publisherList, langua
                     value={edition.ed_series} 
                     inputClassName={'addBook-input'} 
                     pleaceholder={'Edition series'} 
-                    onChange={handleEmail}
+                    onChange={handleBookEditionSeries}
                 />
                 <InputModel
                     containerClassName={'addBook-input-container'} 
@@ -131,7 +164,7 @@ const DesktopTemplate = ({book, edition, copy, personList, publisherList, langua
                     value={edition.ed_num} 
                     inputClassName={'addBook-input'} 
                     pleaceholder={'0'} 
-                    onChange={handleEmail}
+                    onChange={handleBookEditionNum}
                 />
                 <InputModel
                     containerClassName={'addBook-input-container'} 
@@ -142,15 +175,13 @@ const DesktopTemplate = ({book, edition, copy, personList, publisherList, langua
                     value={edition.ed_year} 
                     inputClassName={'addBook-input'} 
                     pleaceholder={'Edition year'} 
-                    onChange={handleEmail}
+                    onChange={handleBookEditionYear}
                 />
-
-                illustrator_id: , 
-                translator_id: , 
-                ed_lang_id: ,
-                publisher_id: ,
-                form_id: ,
-
+                <SearchPersonList personList={personList} handleValue={handleBookEditionIlustratorId} selectSpan={"Select ilustrator"} />
+                <SearchPersonList personList={personList} handleValue={handleBookEditionTranslatorId} selectSpan={"Select translator"} />
+                <SearchLanguageList languageList={languageList} handleValue={handleBookEditionLanguageId} selectSpan={"Select book edition language"} />
+                <SearchPublisherList publisherList={publisherList} handleValue={handleBookEditionPublisherId} selectSpan={"Select publisher"} />
+                <SearchFormList formList={formList} handleValue={handleBookEditionFormId} selectSpan={"Select form"} />
                 <InputModel
                     containerClassName={'addBook-input-container'} 
                     labelContent={'Book edition isbn:'} 
@@ -160,7 +191,7 @@ const DesktopTemplate = ({book, edition, copy, personList, publisherList, langua
                     value={edition.isbn} 
                     inputClassName={'addBook-input'} 
                     pleaceholder={'Edition isbn'} 
-                    onChange={handleEmail}
+                    onChange={handleBookEditionIsbn}
                 />
                 <InputModel
                     containerClassName={'addBook-input-container'} 
@@ -171,7 +202,7 @@ const DesktopTemplate = ({book, edition, copy, personList, publisherList, langua
                     value={edition.ukd} 
                     inputClassName={'addBook-input'} 
                     pleaceholder={'Edition ukd'} 
-                    onChange={handleEmail}
+                    onChange={handleBookEditionUkd}
                 />
                 <button type="submit" className="">Add Book</button>
             </form>
@@ -179,13 +210,6 @@ const DesktopTemplate = ({book, edition, copy, personList, publisherList, langua
         </div>
     )
 }
-
-type updateSingleFieldProps = {
-    setFunction: () => void;
-    field: any;
-    value: any;
-}
-
 
 
 export default function AddBookOrganism () {
@@ -212,32 +236,16 @@ export default function AddBookOrganism () {
         isbn: null,
         ukd: null,
     })
-    const [copy, setCopy] = useState<Copy>({
-        id: null,
-        ed_id: null,
-        rented: null,
-    })
     const [personList, setPersonList] = useState<Person[]>([])
     const [publisherList, setPublisherList] = useState<Publisher[]>([])
     const [languageList, setLanguageList] = useState<Language[]>([])
     const [formList, setFormList] = useState<Form[]>([])
     const [newBookId, setNewBookId] = useState<number | null>(null)
+    const token = sessionStorage.getItem('access_token');
 
-    const updateSingleField = ({setFunction, field, value}: updateSingleFieldProps) => {
-        setFunction(prev => ({
-            ...prev,
-            field: value,
-        }));
-    };
-
-    const handleBookTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if(e.target.value === '') { setEmail(null); }
-        else { setEmail(e.target.value); }
-    }
-   
 
     const fetchPersonList = () => {
-        const response = fetch(``, {
+        const response = fetch(`http://localhost:8000/person/get-all`, {
             method: "GET",
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
@@ -251,7 +259,7 @@ export default function AddBookOrganism () {
     }
 
     const fetchPublisherList = () => {
-        const response = fetch(``, {
+        const response = fetch(`http://localhost:8000/publisher/get-all`, {
             method: "GET",
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
@@ -265,7 +273,7 @@ export default function AddBookOrganism () {
     }
 
     const fetchLanguageList = () => {
-        const response = fetch(``, {
+        const response = fetch(`http://localhost:8000/language/get-all`, {
             method: "GET",
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
@@ -279,7 +287,7 @@ export default function AddBookOrganism () {
     }
 
     const fetchFormList = () => {
-        const response = fetch(``, {
+        const response = fetch(`http://localhost:8000/form/get-all`, {
             method: "GET",
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
@@ -292,68 +300,78 @@ export default function AddBookOrganism () {
         }).catch(error => { console.error('Error:', error); });
     }
 
-    const AddCopy = async () => {
-        let temp;
-
-        const fetchBook = await fetch(`get edition by book id`, {
+    const AddCopy = async (book_id: number) => {
+        const fetchBook = await fetch(`http://localhost:8000/edition/get-by-book-id?id=${book_id}`, {
             method: "GET",
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
             credentials: 'include',
         });
         if(fetchBook.ok){
             const data = await fetchBook.json();
-            temp = data.id;
+            const response = await fetch(`http://localhost:8000/copy/add`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                credentials: 'include',
+                body: JSON.stringify({
+                    ed_id: data[0].id
+                })
+            });
+            if(response.ok) {}else {console.log(response.status, response.statusText)}
         }else { console.log(fetchBook.status, fetchBook.statusText); }
-
-        const response = await fetch(``, {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'},
-            credentials: 'include',
-            body: JSON.stringify({
-                ed_id: temp
-            })
-        });
-        if(response.ok) {}else {console.log(response.status, response.statusText)}
     }
 
     const AddEdition = async () => {
-        const fetchBook = await fetch(`get book_id by book title`, {
+        const fetchBook = await fetch(`http://localhost:8000/book/get-by-title?title=${book.title}`, {
             method: "GET",
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
             credentials: 'include',
         });
         if(fetchBook.ok){
             const data = await fetchBook.json();
-            setNewBookId(data.id);
+            setNewBookId(data[0].id);
+            const response = await fetch(`http://localhost:8000/edition/add`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                credentials: 'include',
+                body: JSON.stringify({
+                    book_id: data[0].id,
+                    ed_title: edition.ed_title,
+                    ed_series: edition.ed_series,
+                    illustrator_id: edition.illustrator_id,
+                    translator_id: edition.translator_id,
+                    ed_lang_id: edition.ed_lang_id,
+                    publisher_id: edition.publisher_id,
+                    ed_num: edition.ed_num,
+                    ed_year: edition.ed_year,
+                    form_id: edition.form_id,
+                    isbn: edition.isbn,
+                    ukd: edition.ukd,
+                })
+            });
+            if(response.ok) { await AddCopy(data[0].id); }else { console.log(response.status, response.statusText); }
         }else { console.log(fetchBook.status, fetchBook.statusText); }
-
-        const response = await fetch(``, {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'},
-            credentials: 'include',
-            body: JSON.stringify({
-                book_id: newBookId,
-                ed_title: edition.ed_title,
-                ed_series: edition.ed_series,
-                illustrator_id: , 
-                translator_id: , 
-                ed_lang_id: ,
-                publisher_id: ,
-                ed_num: edition.ed_num,
-                ed_year: edition.ed_year,
-                form_id: ,
-                isbn: edition.isbn, 
-                ukd: edition.ukd, 
-            })
-        });
-        if(response.ok) { }else {console.log(response.status, response.statusText)}
     }
 
     const AddBook = async (e: SyntheticEvent) => {
         e.preventDefault();
-        const response = await fetch(``, {
+        const response = await fetch(`http://localhost:8000/book/add`, {
             method: "POST",
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
             credentials: 'include',
             body: JSON.stringify({
                 title: book.title,
@@ -362,11 +380,155 @@ export default function AddBookOrganism () {
                 author_id: book.author_id,
             })
         });
-        if(response.ok) {
-            AddEdition();
-            AddCopy();
-        }else {console.log(response.status, response.statusText)}
+        if(response.ok) { AddEdition(); }else {console.log(response.status, response.statusText)}
     }
+
+
+    const handleBookTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const updateTitle = (value: any) => {
+            setBook((prevBook) => ({
+                ...prevBook,
+                title: value,
+            }));
+        };
+
+        if(e.target.value === '') { updateTitle(null); }
+        else { updateTitle(e.target.value); }
+    }
+
+    const handleBookSeries = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const updateSeries = (value: any) => {
+            setBook((prevBook) => ({
+                ...prevBook,
+                series: value,
+            }));
+        };
+
+        if(e.target.value === '') { updateSeries(null); }
+        else { updateSeries(e.target.value); }
+    }
+
+    const handleBookAuthorId = (value: number) => {
+        setBook((prevBook) => ({
+            ...prevBook,
+            author_id: value,
+        }));
+    }
+
+    const handleBookLanguageId = (value: number) => {
+        setBook((prevBook) => ({
+            ...prevBook,
+            lang_id: value,
+        }));
+    }
+
+    const handleBookEditionTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const updateEditionTitle = (value: any) => {
+            setEdition((prevEdition) => ({
+                ...prevEdition,
+                ed_title: value,
+            }));
+        };
+
+        if(e.target.value === '') { updateEditionTitle(null); }
+        else { updateEditionTitle(e.target.value); }
+    }
+
+    const handleBookEditionSeries = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const updateEditionSeries = (value: any) => {
+            setEdition((prevEdition) => ({
+                ...prevEdition,
+                ed_series: value,
+            }));
+        };
+
+        if(e.target.value === '') { updateEditionSeries(null); }
+        else { updateEditionSeries(e.target.value); }
+    }
+
+    const handleBookEditionNum = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const updateEditionNum = (value: any) => {
+            setEdition((prevEdition) => ({
+                ...prevEdition,
+                ed_num: value,
+            }));
+        };
+
+        if(e.target.value === '') { updateEditionNum(null); }
+        else { updateEditionNum(e.target.value); }
+    }
+
+    const handleBookEditionYear = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const updateEditionYear = (value: any) => {
+            setEdition((prevEdition) => ({
+                ...prevEdition,
+                ed_year: value,
+            }));
+        };
+
+        if(e.target.value === '') { updateEditionYear(null); }
+        else { updateEditionYear(e.target.value); }
+    }
+
+    const handleBookEditionIsbn = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const updateEditionIsbn = (value: any) => {
+            setEdition((prevEdition) => ({
+                ...prevEdition,
+                isbn: value,
+            }));
+        };
+
+        if(e.target.value === '') { updateEditionIsbn(null); }
+        else { updateEditionIsbn(e.target.value); }
+    }
+
+    const handleBookEditionUkd = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const updateEditionUkd = (value: any) => {
+            setEdition((prevEdition) => ({
+                ...prevEdition,
+                ukd: value,
+            }));
+        };
+
+        if(e.target.value === '') { updateEditionUkd(null); }
+        else { updateEditionUkd(e.target.value); }
+    }
+
+    const handleBookEditionIlustratorId = (value: number) => {
+        setEdition((prevEdition) => ({
+            ...prevEdition,
+            illustrator_id: value,
+        }));
+    }
+
+    const handleBookEditionTranslatorId = (value: number) => {
+        setEdition((prevEdition) => ({
+            ...prevEdition,
+            translator_id: value,
+        }));
+    }
+
+    const handleBookEditionLanguageId = (value: number) => {
+        setEdition((prevEdition) => ({
+            ...prevEdition,
+            ed_lang_id: value,
+        }));
+    }
+
+    const handleBookEditionPublisherId = (value: number) => {
+        setEdition((prevEdition) => ({
+            ...prevEdition,
+            publisher_id: value,
+        }));
+    }
+
+    const handleBookEditionFormId = (value: number) => {
+        setEdition((prevEdition) => ({
+            ...prevEdition,
+            form_id: value,
+        }));
+    }
+
 
     useEffect(()=>{
         fetchPersonList();
@@ -379,12 +541,26 @@ export default function AddBookOrganism () {
         <DesktopTemplate
             book={book}
             edition={edition}
-            copy={copy}
             personList={personList}
             publisherList={publisherList}
             languageList={languageList}
             formList={formList}
             onSubmit={AddBook}
+            handleBookTitle={handleBookTitle}
+            handleBookSeries={handleBookSeries}
+            handleBookAuthorId={handleBookAuthorId}
+            handleBookLanguageId={handleBookLanguageId}
+            handleBookEditionTitle={handleBookEditionTitle}
+            handleBookEditionSeries={handleBookEditionSeries}
+            handleBookEditionNum={handleBookEditionNum}
+            handleBookEditionYear={handleBookEditionYear}
+            handleBookEditionIlustratorId={handleBookEditionIlustratorId}
+            handleBookEditionTranslatorId={handleBookEditionTranslatorId}
+            handleBookEditionLanguageId={handleBookEditionLanguageId}
+            handleBookEditionPublisherId={handleBookEditionPublisherId}
+            handleBookEditionFormId={handleBookEditionFormId}
+            handleBookEditionIsbn={handleBookEditionIsbn}
+            handleBookEditionUkd={handleBookEditionUkd}
         />
     )
 

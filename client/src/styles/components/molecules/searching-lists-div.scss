@@ -1,0 +1,50 @@
+.searching-lists-div {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  color: #02212e;
+  letter-spacing: 1px;
+  font-family: "Special Elite", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+.searching-lists-div span{
+  margin-top: 25px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  color: #02212e;
+  letter-spacing: 1px;
+  font-family: "Special Elite", system-ui;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 20px;
+}
+
+.search-list{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  list-style-type: none;
+  margin-top: 12px;
+  padding: 0 25px 10px 25px;
+  max-height: 200px;
+  overflow-y: scroll;
+  scrollbar-color: #02212e #e6e0d7;
+  scrollbar-width: thin;
+  width: 500px;
+}
+
+.search-list-li-no-active{
+  background-color: #e6e0d7;
+  box-sizing: border-box;
+  font-size: 18px;
+  padding: 15px 0 6px 0;
+  border-bottom: 1px solid #02212e;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  &:hover{
+    background-color: rgb(205, 192, 175);
+  }
+}
