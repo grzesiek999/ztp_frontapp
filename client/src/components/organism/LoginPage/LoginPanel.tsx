@@ -7,7 +7,7 @@ import {UserAuth} from "../../../context/UserContext.tsx";
 
 
 
-export default function LoginPanel ({admin}: {admin: boolean}) {
+export default function LoginPanel () {
     
     const [email, setEmail] = useState<string | null>(null)
     const [password, setPassword] = useState<string | null>(null)
@@ -74,11 +74,11 @@ export default function LoginPanel ({admin}: {admin: boolean}) {
 
     return (
         <div className="login-panel-div">
-            <span className={admin ? 'admin-login-panel-span' : 'login-panel-span'}>{admin ? 'Admin Login' : 'Login'}</span>
+            <span className={'login-panel-span'}>Login</span>
             <form onSubmit={signin}> 
                 <InputModel
                     containerClassName={'login-panel-input-container'} 
-                    labelContent={admin ? 'Admin email:' : 'User email:'} 
+                    labelContent={'User email:'} 
                     labelClassName={'login-panel-label'} 
                     inputType={'text'}
                     step={undefined} 
@@ -101,7 +101,7 @@ export default function LoginPanel ({admin}: {admin: boolean}) {
                 <button type="submit" className="login-panel-login-button">LogIn</button>
                 {message && <span className="login-panel-message">{message}</span>}
             </form>
-            {!admin && <Link to={ROUTER_PATH.REGISTER}>Create Account</Link> }
+            <Link to={ROUTER_PATH.REGISTER}>Create Account</Link> 
             <Link to={'/'} className="login-panel-forget-password-span">Forget Password ?</Link>
         </div>
     )
