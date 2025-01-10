@@ -24,8 +24,8 @@ const DesktopTemplate = ({books}: LibraryResultsProps) => {
     const {user} = useContext(UserAuth);
 
     const goToBookDetails = (book_id: number) => {
-        if(user?.role === 'User') { navigate(`/library/${book_id}`); }
-        else { navigate(`/admin/library/${book_id}`); }
+        if(user?.role === 'Admin' || user?.role === 'Worker') { navigate(`/admin/library/${book_id}`); }
+        else { navigate(`/library/${book_id}`); }
     }
 
     return (

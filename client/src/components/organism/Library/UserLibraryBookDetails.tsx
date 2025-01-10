@@ -19,13 +19,30 @@ interface Author  {
     id: number
 }
 
+interface Edition {
+    id: number | null;
+    book_id: number | null;
+    ed_title: string | null;
+    ed_series: string | null;
+    illustrator_id: number | null; 
+    translator_id: number | null;
+    ed_lang_id: number | null;
+    publisher_id: number | null;
+    ed_num: number | null; 
+    ed_year: number | null; 
+    form_id: number | null; 
+    isbn: number | null; 
+    ukd: string | null; 
+}
+
 type UserLibraryBookProps = {
     book: Book | null;
     bookLanguage: string | null;
     author: Author | null;
+    edition: Edition | null;
 }
 
-const DesktopTemplate = ({book, bookLanguage, author}: UserLibraryBookProps ) => {
+const DesktopTemplate = ({book, bookLanguage, author, edition}: UserLibraryBookProps ) => {
 
     return (
         <div className={'user-library-book-details-div-desktop'}>
@@ -39,6 +56,14 @@ const DesktopTemplate = ({book, bookLanguage, author}: UserLibraryBookProps ) =>
                 <span className={'book-detail-content-span'}>{book?.series}</span>
                 <span className={'book-detail-title-span'}>Language:</span>
                 <span className={'book-detail-content-span'}>{bookLanguage}</span>
+                <span className={'book-detail-title-span'}>Edition Year:</span>
+                <span className={'book-detail-content-span'}>{edition?.ed_year}</span>
+                <span className={'book-detail-title-span'}>Edition number:</span>
+                <span className={'book-detail-content-span'}>{edition?.ed_num}</span>
+                <span className={'book-detail-title-span'}>Isbn:</span>
+                <span className={'book-detail-content-span'}>{edition?.isbn}</span>
+                <span className={'book-detail-title-span'}>Ukd:</span>
+                <span className={'book-detail-content-span'}>{edition?.ukd}</span>
             </div>
         </div>
     )
@@ -61,7 +86,9 @@ export default function UserLibraryBookDetails () {
 
     const [book, setBook] = useState<Book | null>(null);
     const [author, setAuthor] = useState<Author | null>(null);
+    const [edition, setEdition] = useState<Edition | null>(null);
     const [lang, setLang] = useState<string | null>(null);
+    
 
 
 
@@ -75,6 +102,18 @@ export default function UserLibraryBookDetails () {
             const bookData = await responseBook.json();
             setBook(bookData);
         } else { console.log(responseBook.status, responseBook.statusText); }
+    }
+
+    const fetchEdition = async () => {
+        const responseEdition = await fetch(`get by book id`, {
+            method: "GET",
+            headers: {'Content-Type': 'application/json'},
+            credentials: 'include',
+        });
+        if (responseEdition.ok) {
+            const editionData = await responseEdition.json();
+            setEdition(editionData);
+        } else { console.log(responseEdition.status, responseEdition.statusText); }
     }
 
     const fetchAuthor = async () => {
@@ -106,13 +145,14 @@ export default function UserLibraryBookDetails () {
     }, [])
 
     useEffect(()=>{
+        fetchEdition();
         fetchAuthor();
         fetchLanguage();
     }, [book])
 
     return (
         <>
-            {isMobile ? <MobileTemplate /> : <DesktopTemplate book={book} bookLanguage={lang} author={author} />}
+            {isMobile ? <MobileTemplate /> : <DesktopTemplate book={book} bookLanguage={lang} author={author} edition={edition}/>}
         </>
     )
 }

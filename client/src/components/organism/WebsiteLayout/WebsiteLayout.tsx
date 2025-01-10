@@ -22,8 +22,7 @@ const DesktopTemplate = () => {
 const MobileTemplate = () => {
     return (
         <div>
-            <WebsiteLayoutNav />
-            // Button
+
         </div>
     )
 }

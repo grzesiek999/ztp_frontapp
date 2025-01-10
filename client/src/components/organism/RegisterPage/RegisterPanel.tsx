@@ -8,9 +8,11 @@ export default function RegisterPanel () {
 
     const [email, setEmail] = useState<string | null>(null)
     const [password, setPassword] = useState<string | null>(null)
+    const [repeatPassword, setRepeatPassword] = useState<string | null>(null)
     const [name, setName] = useState<string | null>(null)
     const [surname, setSurname] = useState<string | null>(null)
     const [phone, setPhone] = useState<string | null>(null)
+    const [message, setMessage] = useState<string | null>(null)
 
     const navigate = useNavigate()
 
@@ -18,21 +20,24 @@ export default function RegisterPanel () {
     const register = async (e: SyntheticEvent) => {
         e.preventDefault()
 
-        const response = await fetch('http://localhost:8000/users/register', {
-           method: 'POST',
-           headers: {'Content-Type': 'application/json'},
-           credentials: 'include',
-           body: JSON.stringify({
-               email,
-               password,
-               name,
-               surname,
-               phone
-           })
-        });
-        if (response.ok) {
-            return navigate(ROUTER_PATH.ACCOUNT_CREATED);
-        } else { console.log(response.status, response.statusText); }
+        if(password !== repeatPassword) { setMessage("Passwords are not the same !"); }
+        else {
+            const response = await fetch('http://localhost:8000/users/register', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            credentials: 'include',
+            body: JSON.stringify({
+                email,
+                password,
+                name,
+                surname,
+                phone
+            })
+            });
+            if (response.ok) {
+                return navigate(ROUTER_PATH.ACCOUNT_CREATED);
+            } else { console.log(response.status, response.statusText); }
+        }
     }
 
     const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,6 +48,11 @@ export default function RegisterPanel () {
     const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         if(e.target.value === '') { setPassword(null); }
         else { setPassword(e.target.value); }
+    }
+
+    const handleRepeatPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if(e.target.value === '') { setRepeatPassword(null); }
+        else { setRepeatPassword(e.target.value); }
     }
 
     const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,10 +104,10 @@ export default function RegisterPanel () {
                             labelClassName={'register-panel-label'} 
                             inputType={'password'}
                             step={undefined} 
-                            value={password} 
+                            value={repeatPassword} 
                             inputClassName={'register-panel-input'} 
                             pleaceholder={'password'} 
-                            onChange={handlePassword}
+                            onChange={handleRepeatPassword}
                         />
                     </div>
                     <div className="register-form-part-div">
@@ -136,6 +146,7 @@ export default function RegisterPanel () {
                         />
                     </div>
                 </div>
+                {message && <span className="login-panel-message">{message}</span>}
                 <button type="submit" className="register-panel-login-button">Create Account</button>
             </form>
         </div>
