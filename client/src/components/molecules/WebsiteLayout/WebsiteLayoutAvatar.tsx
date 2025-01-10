@@ -18,9 +18,15 @@ const DesktopTemplate = () => {
         navigate(ROUTER_PATH.HOME);
     }
 
+    const goToUserProfil = () => {
+        if(user?.role === 'User') { navigate(`/user/${user?.id}`); }
+        else if (user?.role === 'Admin' || user?.role === 'Worker') { navigate(`/admin/${user?.id}`); }
+        else { navigate(ROUTER_PATH.NO_ACCESS); }
+    }
+
     return (
         <div className='website-layout-avatar-div'>
-            <img src={'/public/icons/user.png'} alt="user error" onClick={()=>{navigate(`/user/${user?.id}`)}}/>
+            <img src={'/public/icons/user.png'} alt="user error" onClick={()=>{ goToUserProfil(); }}/>
             <button type='button' className='logout-button' onClick={logoutButtonclick}>Logout</button>
         </div>
     )

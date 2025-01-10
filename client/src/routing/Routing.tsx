@@ -18,6 +18,8 @@ import CreatedAccount from "../pages/CreatedAccount.tsx";
 import UserBooks from "../pages/UserBooks.tsx";
 import UserBooksHistory from '../pages/UserBooksHistory.tsx';
 import AdminLibraryBook from '../pages/AdminLibraryBook.tsx';
+import AdminProfilLayout from '../components/organism/AdminProfil/AdminProfilLayout.tsx';
+import AdminProfil from '../pages/AdminProfile.tsx';
 
 
 const ROUTER = createBrowserRouter(
@@ -49,14 +51,16 @@ const ROUTER = createBrowserRouter(
             </Route>
 
             <Route element={<AdminRoute/>} >
-                <Route path={ROUTER_PATH.ADMIN_PROFIL} element={null} >
-                    <Route path={ROUTER_PATH.ADMIN_PROFIL} element={null} />
+                <Route path={ROUTER_PATH.ADMIN_PROFIL} element={<AdminProfilLayout />} >
+                    <Route path={ROUTER_PATH.ADMIN_PROFIL} element={<AdminProfil />} />
                     <Route path={ROUTER_PATH.ADMIN_CHANGE_EMAIL} element={null} />
                     <Route path={ROUTER_PATH.ADMIN_CHANGE_PASSWORD} element={null} />
                     <Route path={ROUTER_PATH.ADMIN_CHANGE_PHONE} element={null} />
                 </Route>
                 <Route path={ROUTER_PATH.ADD_BOOK} element={<AddBook />} />
                 <Route path={ROUTER_PATH.ADMIN_LIBRARY_BOOK} element={<AdminLibraryBook />} />
+                <Route path={ROUTER_PATH.ADMIN_BOOK_EDIT} element={ null } />
+                <Route path={ROUTER_PATH.ADMIN_BOOK_STATS} element={ null } />
             </Route>
         </Route>
     )

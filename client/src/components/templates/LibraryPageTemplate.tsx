@@ -1,7 +1,10 @@
 import {useMedia} from "use-media";
 import LibrarySearchPanel from "../organism/Library/LibrarySearchPanel";
 import LibraryResults from "../organism/Library/LibraryResults.tsx";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import { UserAuth } from "../../context/UserContext.tsx";
+import { Link } from "react-router-dom";
+import { ROUTER_PATH } from "../../routing/RouterPath.tsx";
 
 interface Book {
     id: number;
@@ -15,14 +18,16 @@ interface Book {
 
 type LibraryPageProps = {
     books: Book[];
+    isAdmin: boolean;
 }
 
-const DesktopTemplate = ({books} : LibraryPageProps) => {
+const DesktopTemplate = ({books, isAdmin} : LibraryPageProps) => {
     return (
         <div className='library-page-template-div-desktop'>
             <span className='library-page-span'>Search for Books</span>
             <LibrarySearchPanel />
             <LibraryResults books={books} />
+            {isAdmin && <Link to={ROUTER_PATH.ADD_BOOK}>Add new book &#x2795;</Link>}
         </div>
     )
 }
@@ -39,6 +44,8 @@ export default function LibraryPageTemplate() {
     const isMobile = useMedia({maxWidth: 1170})
     const [results, setResults] = useState<Book[]>([]);
     const [enrichedBooks, setEnrichedBooks] = useState<Book[]>([]);
+    const [isAdmin, setIsAdmin] = useState<boolean>(false);
+    const {user} = useContext(UserAuth);
 
 
     const fechBooks = () => {
@@ -82,9 +89,14 @@ export default function LibraryPageTemplate() {
         }
     }, [results]);
 
+    useEffect(() => {
+        if(user?.role === 'Admin' || user?.role === 'Worker') {setIsAdmin(true);}
+        else {setIsAdmin(false);}
+    }, [user])
+
     return (
         <main>
-            {isMobile ? <MobileTemplate /> : <DesktopTemplate books={enrichedBooks} />}
+            {isMobile ? <MobileTemplate /> : <DesktopTemplate books={enrichedBooks} isAdmin={isAdmin} />}
         </main>
     )
 }

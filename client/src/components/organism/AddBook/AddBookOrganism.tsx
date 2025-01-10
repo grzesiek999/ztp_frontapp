@@ -77,6 +77,7 @@ type AddBookOrganismTypes = {
     handleBookEditionFormId: (value: number) => void;
     handleBookEditionIsbn: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleBookEditionUkd: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    message: null | string;
 }
 
 
@@ -91,23 +92,25 @@ const DesktopTemplate =
          onSubmit,
          handleBookTitle,
          handleBookSeries,
-        handleBookAuthorId,
-        handleBookLanguageId,
-        handleBookEditionTitle,
-        handleBookEditionSeries,
-        handleBookEditionNum,
-        handleBookEditionYear,
-        handleBookEditionIlustratorId,
-        handleBookEditionTranslatorId,
-        handleBookEditionLanguageId,
-        handleBookEditionPublisherId,
-        handleBookEditionFormId,
-        handleBookEditionIsbn,
-        handleBookEditionUkd,
+         handleBookAuthorId,
+         handleBookLanguageId,
+         handleBookEditionTitle,
+         handleBookEditionSeries,
+         handleBookEditionNum,
+         handleBookEditionYear,
+         handleBookEditionIlustratorId,
+         handleBookEditionTranslatorId,
+         handleBookEditionLanguageId,
+         handleBookEditionPublisherId,
+         handleBookEditionFormId,
+         handleBookEditionIsbn,
+         handleBookEditionUkd,
+         message,
     }: AddBookOrganismTypes) => {
     
     return (
-        <div className={''}>
+        <div className={'add-book-organism-div'}>
+            <span className="add-book-title-span">Creating new book</span>
             <form onSubmit={onSubmit}>
                 <InputModel
                     containerClassName={'addBook-input-container'} 
@@ -205,8 +208,8 @@ const DesktopTemplate =
                     onChange={handleBookEditionUkd}
                 />
                 <button type="submit" className="">Add Book</button>
+                {message && <span>{message}</span>}
             </form>
-
         </div>
     )
 }
@@ -240,9 +243,28 @@ export default function AddBookOrganism () {
     const [publisherList, setPublisherList] = useState<Publisher[]>([])
     const [languageList, setLanguageList] = useState<Language[]>([])
     const [formList, setFormList] = useState<Form[]>([])
-    const [newBookId, setNewBookId] = useState<number | null>(null)
+    const [message, setMessage] = useState<string | null>(null)
     const token = sessionStorage.getItem('access_token');
 
+
+    const checkDataValue = () => {
+        if(!book.title) { setMessage("Missing book title !"); }
+        else if(!book.series) { setMessage("Missing book series !"); }
+        else if(!book.author_id) { setMessage("Missing book author !"); }
+        else if(!book.lang_id) { setMessage("Missing book language !"); }
+        else if(!edition.ed_title) { setMessage("Missing book edition title !"); }
+        else if(!edition.ed_series) { setMessage("Missing book edition series !"); }
+        else if(!edition.ed_num) { setMessage("Missing book edition number !"); }
+        else if(!edition.ed_year) { setMessage("Missing book edition year !"); }
+        else if(!edition.illustrator_id) { setMessage("Missing book edition ilustrator !"); }
+        else if(!edition.translator_id) { setMessage("Missing book edition translator !"); }
+        else if(!edition.ed_lang_id) { setMessage("Missing book edition language !"); }
+        else if(!edition.publisher_id) { setMessage("Missing book edition publisher !"); }
+        else if(!edition.form_id) { setMessage("Missing book edition form !"); }
+        else if(!edition.isbn) { setMessage("Missing book edition isbn !"); }
+        else if(!edition.ukd) { setMessage("Missing book edition ukd !"); }
+        else { setMessage(null); }
+    }
 
     const fetchPersonList = () => {
         const response = fetch(`http://localhost:8000/person/get-all`, {
@@ -337,7 +359,6 @@ export default function AddBookOrganism () {
         });
         if(fetchBook.ok){
             const data = await fetchBook.json();
-            setNewBookId(data[0].id);
             const response = await fetch(`http://localhost:8000/edition/add`, {
                 method: "POST",
                 headers: {
@@ -366,6 +387,9 @@ export default function AddBookOrganism () {
 
     const AddBook = async (e: SyntheticEvent) => {
         e.preventDefault();
+
+        checkDataValue();
+        
         const response = await fetch(`http://localhost:8000/book/add`, {
             method: "POST",
             headers: {
@@ -561,6 +585,7 @@ export default function AddBookOrganism () {
             handleBookEditionFormId={handleBookEditionFormId}
             handleBookEditionIsbn={handleBookEditionIsbn}
             handleBookEditionUkd={handleBookEditionUkd}
+            message={message}
         />
     )
 

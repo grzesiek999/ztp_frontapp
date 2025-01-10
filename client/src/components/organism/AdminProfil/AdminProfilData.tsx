@@ -19,13 +19,13 @@ const DesktopTemplate = () => {
                     <span className={'user-data-main-span'}>User Data:</span>
                     <span>User name: {user?.name}</span>
                     <span>User surname: {user?.surname}</span>
-                    <span>Card number: {user?.card_number}</span>
+                    <span>Role: {user?.role}</span>
                 </div>
             </div>
             <div className={'user-profil-change-data-div-desktop'}>
-                <span><Link to={ROUTER_PATH.USER_CHANGE_PHONE}>Change Phone Number &#128241;</Link></span>
-                <span><Link to={ROUTER_PATH.USER_CHANGE_EMAIL}>Change Email &#128232;</Link></span>
-                <span><Link to={ROUTER_PATH.USER_CHANGE_PASSWORD}>Change Password &#128272;</Link></span>
+                <span><Link to={ROUTER_PATH.ADMIN_CHANGE_PHONE}>Change Phone Number &#128241;</Link></span>
+                <span><Link to={ROUTER_PATH.ADMIN_CHANGE_EMAIL}>Change Email &#128232;</Link></span>
+                <span><Link to={ROUTER_PATH.ADMIN_CHANGE_PASSWORD}>Change Password &#128272;</Link></span>
             </div>
         </div>
     )
@@ -40,7 +40,7 @@ const MobileTemplate = () => {
     )
 }
 
-export default function UserProfilData () {
+export default function AdminProfilData () {
     const isMobile = useMedia({maxWidth: 1170})
 
     return (
