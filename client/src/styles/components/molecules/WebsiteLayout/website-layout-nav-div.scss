@@ -1,18 +1,18 @@
-.website-layout-nav-div{
+.website-layout-user-nav-div{
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.website-layout-nav-div nav{
+.website-layout-user-nav-div nav{
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.website-layout-nav-div nav ul{
+.website-layout-user-nav-div nav ul{
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -22,18 +22,64 @@
   margin: 0;
 }
 
-.website-layout-nav-div nav ul li{
+.website-layout-user-nav-div nav ul li{
   margin-right: 150px;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.website-layout-nav-div nav ul li:last-child{
+.website-layout-user-nav-div nav ul li:last-child{
   margin-right: 0;
 }
 
-.website-layout-nav-div nav ul li a{
+.website-layout-user-nav-div ul li a{
+  text-decoration: none;
+  color: #02212e;
+  font-size: 42px;
+  letter-spacing: 1px;
+  font-family: "Special Elite", system-ui;
+  font-weight: 600;
+  font-style: normal;
+}
+
+
+.website-layout-admin-nav-div{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.website-layout-admin-nav-div nav{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.website-layout-admin-nav-div nav ul{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.website-layout-admin-nav-div nav ul li{
+  margin-right: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.website-layout-admin-nav-div nav ul li:last-child{
+  margin-right: 0;
+}
+
+.website-layout-admin-nav-div ul li a{
   text-decoration: none;
   color: #02212e;
   font-size: 42px;

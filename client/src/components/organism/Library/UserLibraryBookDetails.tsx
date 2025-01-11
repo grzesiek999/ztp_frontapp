@@ -1,7 +1,7 @@
 import {useMedia} from "use-media";
 import UserLibraryBookAvatar from "../../molecules/Library/UserLibraryBookAvatar.tsx";
 import {useEffect, useState} from "react";
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 
 interface Book  {
@@ -105,14 +105,14 @@ export default function UserLibraryBookDetails () {
     }
 
     const fetchEdition = async () => {
-        const responseEdition = await fetch(`get by book id`, {
+        const responseEdition = await fetch(`http://localhost:8000/edition/get-by-book-id?id=${book_id}`, {
             method: "GET",
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
         });
         if (responseEdition.ok) {
             const editionData = await responseEdition.json();
-            setEdition(editionData);
+            setEdition(editionData[0]);
         } else { console.log(responseEdition.status, responseEdition.statusText); }
     }
 

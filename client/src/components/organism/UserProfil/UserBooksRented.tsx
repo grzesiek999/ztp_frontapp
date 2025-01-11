@@ -1,5 +1,5 @@
 import {useMedia} from "use-media";
-import {useNavigate, useParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 
 
@@ -51,14 +51,13 @@ const MobileTemplate = () => {
 
 export default function UserBooksRented() {
     const isMobile = useMedia({maxWidth: 1170});
-
     const [results, setResults] = useState<Book[]>([]);
     const [enrichedBooks, setEnrichedBooks] = useState<Book[]>([]);
     const token = sessionStorage.getItem('access_token');
 
 
-    const fechBooks = () => {
-        const responseReturned = fetch(`http://localhost:8000/rental/get-my-rented`, {
+    const fechBooks = async () => {
+        const responseReturned = await fetch(`http://localhost:8000/rental/get-my-returned`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -66,15 +65,25 @@ export default function UserBooksRented() {
             },
             credentials: 'include',
         });
-        responseReturned.then(responseReturned => {
-            if (!responseReturned.ok) { throw new Error(`HTTP error! status: ${responseReturned.status}`); }
-            return responseReturned.json();
-        }).then(data => {
-
-        }).catch(error => {
-            console.error('Error:', error);
-        });
+        if(responseReturned.ok) {
+            const data = await responseReturned.json();
+            for (let i = 0; i < data.length; i++) {
+                const bookResponse = await fetch(`http://localhost:8000/book/get-by-copy-id?id=${data[i].copy_id}`, {
+                    method: "GET",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                    credentials: 'include',
+                });
+                if(bookResponse.ok){
+                    const bookData = await bookResponse.json();
+                    setResults((prevResults) => [...prevResults, bookData]);
+                } else { console.log(responseReturned.status, responseReturned.statusText); }
+            }
+        }else { console.log(responseReturned.status, responseReturned.statusText); }
     }
+
 
     const enrichBooksWithAuthors = async () => {
         const booksWithAuthors = await Promise.all(

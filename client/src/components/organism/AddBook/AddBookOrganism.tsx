@@ -113,101 +113,109 @@ const DesktopTemplate =
             <span className="add-book-title-span">Creating new book</span>
             <form onSubmit={onSubmit}>
                 <InputModel
-                    containerClassName={'addBook-input-container'} 
-                    labelContent={'Book title:'} 
-                    labelClassName={'addBook-label'} 
+                    containerClassName={'addBook-input-container'}
+                    labelContent={'Book title:'}
+                    labelClassName={'addBook-label'}
                     inputType={'text'}
-                    step={undefined} 
-                    value={book.title} 
-                    inputClassName={'addBook-input'} 
-                    pleaceholder={'Title'} 
+                    step={undefined}
+                    value={book.title}
+                    inputClassName={'addBook-input'}
+                    pleaceholder={'Title'}
                     onChange={handleBookTitle}
                 />
                 <InputModel
-                    containerClassName={'addBook-input-container'} 
-                    labelContent={'Book series:'} 
-                    labelClassName={'addBook-label'} 
+                    containerClassName={'addBook-input-container'}
+                    labelContent={'Book series:'}
+                    labelClassName={'addBook-label'}
                     inputType={'text'}
-                    step={undefined} 
-                    value={book.series} 
-                    inputClassName={'addBook-input'} 
-                    pleaceholder={'Series'} 
+                    step={undefined}
+                    value={book.series}
+                    inputClassName={'addBook-input'}
+                    pleaceholder={'Series'}
                     onChange={handleBookSeries}
                 />
-                <SearchPersonList personList={personList} handleValue={handleBookAuthorId} selectSpan={"Select book author"}/>
-                <SearchLanguageList languageList={languageList} handleValue={handleBookLanguageId} selectSpan={"Select book language"}/>
+                <div className={'temp-container-div-list'}>
+                    <SearchPersonList personList={personList} handleValue={handleBookAuthorId} selectSpan={"Select book author"}/>
+                    <SearchLanguageList languageList={languageList} handleValue={handleBookLanguageId} selectSpan={"Select book language"}/>
+                </div>
                 <InputModel
-                    containerClassName={'addBook-input-container'} 
-                    labelContent={'Book edition title:'} 
-                    labelClassName={'addBook-label'} 
+                    containerClassName={'addBook-input-container'}
+                    labelContent={'Book edition title:'}
+                    labelClassName={'addBook-label'}
                     inputType={'text'}
-                    step={undefined} 
-                    value={edition.ed_title} 
-                    inputClassName={'addBook-input'} 
-                    pleaceholder={'Edition title'} 
+                    step={undefined}
+                    value={edition.ed_title}
+                    inputClassName={'addBook-input'}
+                    pleaceholder={'Edition title'}
                     onChange={handleBookEditionTitle}
                 />
                 <InputModel
-                    containerClassName={'addBook-input-container'} 
-                    labelContent={'Book edition series:'} 
-                    labelClassName={'addBook-label'} 
+                    containerClassName={'addBook-input-container'}
+                    labelContent={'Book edition series:'}
+                    labelClassName={'addBook-label'}
                     inputType={'text'}
-                    step={undefined} 
-                    value={edition.ed_series} 
-                    inputClassName={'addBook-input'} 
-                    pleaceholder={'Edition series'} 
+                    step={undefined}
+                    value={edition.ed_series}
+                    inputClassName={'addBook-input'}
+                    pleaceholder={'Edition series'}
                     onChange={handleBookEditionSeries}
                 />
                 <InputModel
-                    containerClassName={'addBook-input-container'} 
-                    labelContent={'Book edition number:'} 
-                    labelClassName={'addBook-label'} 
+                    containerClassName={'addBook-input-container'}
+                    labelContent={'Book edition number:'}
+                    labelClassName={'addBook-label'}
                     inputType={'number'}
-                    step={1} 
-                    value={edition.ed_num} 
-                    inputClassName={'addBook-input'} 
-                    pleaceholder={'0'} 
+                    step={1}
+                    value={edition.ed_num}
+                    inputClassName={'addBook-input'}
+                    pleaceholder={'0'}
                     onChange={handleBookEditionNum}
                 />
                 <InputModel
-                    containerClassName={'addBook-input-container'} 
-                    labelContent={'Book edition year:'} 
-                    labelClassName={'addBook-label'} 
+                    containerClassName={'addBook-input-container'}
+                    labelContent={'Book edition year:'}
+                    labelClassName={'addBook-label'}
                     inputType={'number'}
-                    step={1} 
-                    value={edition.ed_year} 
-                    inputClassName={'addBook-input'} 
-                    pleaceholder={'Edition year'} 
+                    step={1}
+                    value={edition.ed_year}
+                    inputClassName={'addBook-input'}
+                    pleaceholder={'Edition year'}
                     onChange={handleBookEditionYear}
                 />
-                <SearchPersonList personList={personList} handleValue={handleBookEditionIlustratorId} selectSpan={"Select ilustrator"} />
-                <SearchPersonList personList={personList} handleValue={handleBookEditionTranslatorId} selectSpan={"Select translator"} />
-                <SearchLanguageList languageList={languageList} handleValue={handleBookEditionLanguageId} selectSpan={"Select book edition language"} />
-                <SearchPublisherList publisherList={publisherList} handleValue={handleBookEditionPublisherId} selectSpan={"Select publisher"} />
-                <SearchFormList formList={formList} handleValue={handleBookEditionFormId} selectSpan={"Select form"} />
+                <div className={'temp-container-div-list'}>
+                    <SearchPersonList personList={personList} handleValue={handleBookEditionIlustratorId} selectSpan={"Select ilustrator"} />
+                    <SearchPersonList personList={personList} handleValue={handleBookEditionTranslatorId} selectSpan={"Select translator"} />
+                </div>
+                <div className={'temp-container-div-list'}>
+                    <SearchLanguageList languageList={languageList} handleValue={handleBookEditionLanguageId} selectSpan={"Select book edition language"} />
+                    <SearchPublisherList publisherList={publisherList} handleValue={handleBookEditionPublisherId} selectSpan={"Select publisher"} />
+                </div>
+                <div className={'temp-container-div-list'}>
+                    <SearchFormList formList={formList} handleValue={handleBookEditionFormId} selectSpan={"Select form"} />
+                </div>
                 <InputModel
-                    containerClassName={'addBook-input-container'} 
-                    labelContent={'Book edition isbn:'} 
-                    labelClassName={'addBook-label'} 
+                    containerClassName={'addBook-input-container'}
+                    labelContent={'Book edition isbn:'}
+                    labelClassName={'addBook-label'}
                     inputType={'number'}
-                    step={1} 
-                    value={edition.isbn} 
-                    inputClassName={'addBook-input'} 
-                    pleaceholder={'Edition isbn'} 
+                    step={1}
+                    value={edition.isbn}
+                    inputClassName={'addBook-input'}
+                    pleaceholder={'Edition isbn'}
                     onChange={handleBookEditionIsbn}
                 />
                 <InputModel
-                    containerClassName={'addBook-input-container'} 
-                    labelContent={'Book edition ukd:'} 
-                    labelClassName={'addBook-label'} 
+                    containerClassName={'addBook-input-container'}
+                    labelContent={'Book edition ukd:'}
+                    labelClassName={'addBook-label'}
                     inputType={'text'}
-                    step={undefined} 
-                    value={edition.ukd} 
-                    inputClassName={'addBook-input'} 
-                    pleaceholder={'Edition ukd'} 
+                    step={undefined}
+                    value={edition.ukd}
+                    inputClassName={'addBook-input'}
+                    pleaceholder={'Edition ukd'}
                     onChange={handleBookEditionUkd}
                 />
-                <button type="submit" className="">Add Book</button>
+                <button type="submit" className="add-book-button">Add Book</button>
                 {message && <span>{message}</span>}
             </form>
         </div>

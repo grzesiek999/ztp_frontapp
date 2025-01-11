@@ -61,6 +61,12 @@ const ROUTER = createBrowserRouter(
                 <Route path={ROUTER_PATH.ADMIN_LIBRARY_BOOK} element={<AdminLibraryBook />} />
                 <Route path={ROUTER_PATH.ADMIN_BOOK_EDIT} element={ null } />
                 <Route path={ROUTER_PATH.ADMIN_BOOK_STATS} element={ null } />
+
+
+
+                <Route path={ROUTER_PATH.ADMIN_PERSONS} element={ null } />
+                <Route path={ROUTER_PATH.ADMIN_PUBLISHERS} element={ null } />
+                <Route path={ROUTER_PATH.ADMIN_USERS} element={ null } />
             </Route>
         </Route>
     )
