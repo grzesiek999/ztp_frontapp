@@ -3,9 +3,9 @@ import {useMedia} from "use-media";
 
 const DesktopTemplate = () => {
     return (
-        <>
-            No Access
-        </>
+        <div className={'created-account-template-div-desktop'}>
+            <span>No access !</span>
+        </div>
     )
 }
 

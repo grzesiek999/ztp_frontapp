@@ -59,3 +59,31 @@
 @use "./components/templates/user-profil-page-template-div.scss";
 
 @use "./components/molecules/RegisterPage/register-panel-input-container.scss";
+
+@use "./components/molecules/WebsiteLayout/website-layout-avatar-div.scss";
+
+@use "./components/templates/created-account-template-div-desktop.scss";
+
+@use "./components/organism/UserProfil/user-profil-page-data-div-desktop.scss";
+
+@use "./components/organism/LibraryPage/library-results-div-desktop.scss";
+
+@use "./components/organism/LibraryPage/user-library-book-details-div-desktop.scss";
+
+@use "./components/molecules/Library/book-detail-image-div.scss";
+
+@use "./components/organism/LibraryPage/user-library-book-options-div-desktop.scss";
+
+@use "./components/templates/user-books-page-tempate-div-desktop.scss";
+
+@use "./components/templates/admin-library-book-template-desktop.scss";
+
+@use "./components/templates/user-books-history-page-template-desktop.scss";
+
+@use "./components/templates/add-book-page-template-desktop.scss";
+
+@use "./components/templates/user-library-book-page-template-desktop.scss";
+
+@use "./components/molecules/searching-lists-div.scss";
+
+@use "./components/organism/AddBook/add-book-organism-div.scss";

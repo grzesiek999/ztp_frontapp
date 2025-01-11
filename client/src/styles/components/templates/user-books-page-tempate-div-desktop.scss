@@ -1,0 +1,24 @@
+.user-books-page-template-div-desktop {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding: 75px 100px;
+}
+
+.users-book-in-profile-div-dektop-template {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+    margin-bottom: 50px;
+}
+
+.rented-books-title-span {
+    color: #02212e;
+    font-size: 42px;
+    letter-spacing: 1px;
+    font-family: "Special Elite", system-ui;
+    font-weight: 600;
+    font-style: normal;
+    margin-bottom: 50px;
+}

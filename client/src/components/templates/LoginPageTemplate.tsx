@@ -5,7 +5,7 @@ import LoginPanel from "../organism/LoginPage/LoginPanel";
 const DesktopTemplate = () => {
     return(
         <div className="login-page-template-div">
-            <LoginPanel admin={false} />
+            <LoginPanel />
         </div>
     )
 }

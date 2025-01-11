@@ -1,0 +1,23 @@
+.user-library-book-page-template-desktop {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+}
+
+.book-options-message-span-div{
+  box-sizing: border-box;
+  display: flex;
+  margin-top: 20px;
+  min-width: 100%;
+}
+
+.book-options-message-span {
+  min-width: 100%;
+  font-size: 24px;
+  letter-spacing: 1px;
+  font-family: "Special Elite", system-ui;
+  font-weight: 600;
+  font-style: normal;
+  text-align: center;
+}

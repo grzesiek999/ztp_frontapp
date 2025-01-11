@@ -1,28 +1,26 @@
-import useMedia from "use-media"
-
+import {useMedia} from "use-media";
 
 
 const DesktopTemplate = () => {
     return (
-        <>
-        </>
-    )
-}
-
-
-const MobileTemplate = () => {
-    return (
-        <div>
-            
+        <div className={'created-account-template-div-desktop'}>
+            <span>Account created successfully !</span>
         </div>
     )
 }
 
+const MobileTemplate = () => {
+    return (
+        <div>
 
-export default function xxxx () {
+        </div>
+    )
+}
+
+export default function CreatedAccountTemplate() {
     const isMobile = useMedia({maxWidth: 1170})
-    
-    return(
+
+    return (
         <>
             {isMobile ? <MobileTemplate /> : <DesktopTemplate />}
         </>

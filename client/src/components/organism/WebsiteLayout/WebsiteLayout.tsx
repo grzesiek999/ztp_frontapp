@@ -2,13 +2,19 @@ import {useMedia} from "use-media";
 import {Outlet} from "react-router-dom";
 import WebsiteLayoutNav from "../../molecules/WebsiteLayout/WebsiteLayoutNav.tsx";
 import WebsiteLayoutButtons from "../../molecules/WebsiteLayout/WebsiteLayoutButtons.tsx";
+import WebsiteLayoutAvatar from "../../molecules/WebsiteLayout/WebsiteLayoutAvatar.tsx";
+import {useContext} from "react";
+import {UserAuth} from "../../../context/UserContext.tsx";
 
 
 const DesktopTemplate = () => {
+
+    const {user} = useContext(UserAuth)
+
     return (
         <div className={"website-layout-div-desktop"}>
             <WebsiteLayoutNav />
-            <WebsiteLayoutButtons />
+            {user ? <WebsiteLayoutAvatar /> : <WebsiteLayoutButtons /> }
         </div>
     )
 }
@@ -16,8 +22,7 @@ const DesktopTemplate = () => {
 const MobileTemplate = () => {
     return (
         <div>
-            <WebsiteLayoutNav />
-            // Button
+
         </div>
     )
 }
