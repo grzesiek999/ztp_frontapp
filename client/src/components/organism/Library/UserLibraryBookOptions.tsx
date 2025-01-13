@@ -47,6 +47,7 @@ export function UserLibraryBookOptions () {
     const [returnButtonClass, setReturnButtonClass] = useState<string>("user-library-book-options-no-active-button");
     const [copy_id, setCopyId] = useState<number | null>(null);
     const [user_id, setUserId] = useState<number | null>(null);
+    const [rent_id, setRentId] = useState<number | null>(null);
     const token = sessionStorage.getItem('access_token');
 
 
@@ -120,21 +121,52 @@ export function UserLibraryBookOptions () {
         }
     }
 
-    const returnBook = async () => {
-        const response = await fetch(`http://localhost:8000/`, {
+    const checkUsersRents = async () => {
+        const responseRental = await fetch(`http://localhost:8000/rental/get-my-rented`, {
             method: "GET",
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
             credentials: 'include',
 
         })
-        if (response.ok) {
-            setMessage("Book returned successfully");
-            setReturnButtonClass('user-library-book-options-no-active-button')
+        if (responseRental.ok) {
+            const data = await responseRental.json();
+            for (let i = 0; i < data.length; i++) {
+                if(data[i].copy_id === copy_id) {
+                    if(data[i].return_date === null) {
+                        setReturnButtonClass('user-library-book-options-active-button');
+                        setRentId(data[i].id);
+                    }
+                }
+            }
         }else {
-            setMessage("You dont have rent this book !");
-            console.log(response.status, response.statusText);
+            console.log(responseRental.status, responseRental.statusText);
         }
     }
+
+    const returnBook = async () => {
+        if(rent_id !== null) {
+            const responseRental = await fetch(`http://localhost:8000/rental/return-my?id=${rent_id}`, {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                credentials: 'include',
+            })
+            if (responseRental.ok) {
+                setMessage("Book rented successfully! ");
+            } else {
+                console.log(responseRental.status, responseRental.statusText);
+            }
+        }else { setMessage("You dont rent this book !"); }
+    }
+
+    useEffect(() => {
+        checkUsersRents();
+    }, [copy_id]);
 
     useEffect(() => {
         getCopyByBookId();

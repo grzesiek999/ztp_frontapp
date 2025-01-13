@@ -7,7 +7,7 @@ import UserBooksReserved from "../organism/UserProfil/UserBooksReserved";
 
 const DesktopTemplate = () => {
     return (
-        <div className={'user-books-page-tempate-div-desktop'}>
+        <div className={'user-books-page-template-div-desktop'}>
             <UserBooksRented />
             <UserBooksReserved />
         </div>

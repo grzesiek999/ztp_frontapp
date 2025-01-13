@@ -1,20 +1,17 @@
 import {useMedia} from "use-media";
 import {Link} from "react-router-dom";
 import {ROUTER_PATH} from "../../../routing/RouterPath.tsx";
-import { UserAuth, UserContextType } from "../../../context/UserContext.tsx";
-import { Context, useEffect, useState } from "react";
+import {useContext, useEffect, useState} from "react";
+import {UserAuth} from "../../../context/UserContext.tsx";
 
 
-const DesktopTemplate = () => {
+type WebsiteLayoutNavProps = {
+    isAdmin: boolean;
+}
 
-    const {user} = useContext(UserAuth);
-    const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
-    useEffect(()=>{
-        if(user?.role === 'Admin' || user?.role === 'Worker') { setIsAdmin(true); }
-        else { setIsAdmin(false); }
-    }, [user])
-    
+const DesktopTemplate = ({isAdmin}: WebsiteLayoutNavProps) => {
+
     return (
         <>
             {isAdmin ?
@@ -49,15 +46,19 @@ const MobileTemplate = () => {
 export default function WebsiteLayoutNav() {
     const isMobile = useMedia({maxWidth: 1170})
 
+    const {user} = useContext(UserAuth);
+    const [isAdmin, setIsAdmin] = useState<boolean>(false);
+
+    useEffect(()=>{
+        if(user?.role === 'Admin' || user?.role === 'Worker') { setIsAdmin(true); }
+        else { setIsAdmin(false); }
+    }, [user])
+
     return (
-        <div className={"website-layout-nav-div"}>
+        <div className={isAdmin ? "website-layout-admin-nav-div" : "website-layout-user-nav-div"}>
             <nav>
-                {isMobile ? <MobileTemplate /> : <DesktopTemplate />}
+                {isMobile ? <MobileTemplate /> : <DesktopTemplate isAdmin={isAdmin} />}
             </nav>
         </div>
     )
-}
-
-function useContext(UserAuth: Context<UserContextType>): { user: any; } {
-    throw new Error("Function not implemented.");
 }
