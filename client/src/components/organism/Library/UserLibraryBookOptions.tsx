@@ -157,7 +157,7 @@ export function UserLibraryBookOptions () {
                 credentials: 'include',
             })
             if (responseRental.ok) {
-                setMessage("Book rented successfully! ");
+                setMessage("Book renturned successfully !");
             } else {
                 console.log(responseRental.status, responseRental.statusText);
             }
