@@ -50,54 +50,106 @@ const MobileTemplate = () => {
 }
 
 export default function UserBooksReserved() {
-    const isMobile = useMedia({maxWidth: 1170});
+    const isMobile = useMedia({ maxWidth: 1170 });
     const [results, setResults] = useState<Book[]>([]);
     const [enrichedBooks, setEnrichedBooks] = useState<Book[]>([]);
-    const token = sessionStorage.getItem('access_token');
-
+    const token = sessionStorage.getItem("access_token");
 
     const fechBooks = async () => {
-        const responseReturned = await fetch(`http://localhost:8000/rental/get-my-returned`, {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-            },
-            credentials: 'include',
-        });
-        if(responseReturned.ok) {
-            const data = await responseReturned.json();
-            for (let i = 0; i < data.length; i++) {
-                const bookResponse = await fetch(`http://localhost:8000/book/get-by-copy-id?id=${data[i].copy_id}`, {
-                    method: "GET",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`,
-                    },
-                    credentials: 'include',
-                });
-                if(bookResponse.ok){
-                    const bookData = await bookResponse.json();
-                    setResults((prevResults) => [...prevResults, bookData]);
-                } else { console.log(responseReturned.status, responseReturned.statusText); }
-            }
-        }else { console.log(responseReturned.status, responseReturned.statusText); }
-    }
+        try {
+            const responseReturned = await fetch(`http://localhost:8000/reservation/get-my-reserved`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                credentials: "include",
+            });
 
+            if (responseReturned.ok) {
+                const data = await responseReturned.json();
+
+                const bookFetches = data.map(async (item: any) => {
+                    const bookResponse = await fetch(
+                        `http://localhost:8000/book/get-by-copy-id?id=${item.copy_id}`,
+                        {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json",
+                                Authorization: `Bearer ${token}`,
+                            },
+                            credentials: "include",
+                        }
+                    );
+
+                    if (bookResponse.ok) {
+                        return await bookResponse.json();
+                    } else {
+                        console.error("Error fetching book:", bookResponse.status, bookResponse.statusText);
+                        return null;
+                    }
+                });
+
+                const fetchedBooks = await Promise.all(bookFetches);
+
+                const uniqueBooks = fetchedBooks.filter((book, index, self) => {
+                    return (
+                        book !== null &&
+                        self.findIndex((b: any) => b && b.id === book.id) === index
+                    );
+                });
+
+                setResults((prevResults) => [
+                    ...prevResults.filter((prevBook) =>
+                        uniqueBooks.every((newBook) => newBook.id !== prevBook.id)
+                    ),
+                    ...uniqueBooks,
+                ]);
+            } else {
+                console.error("Error fetching reservations:", responseReturned.status, responseReturned.statusText);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
 
     const enrichBooksWithAuthors = async () => {
-        const booksWithAuthors = await Promise.all(
-            results.map(async (book) => {
-                const response = await fetch(`http://localhost:8000/person/get-by-id?id=${book.author_id}`);
-                const authorData = await response.json();
-                return {
-                    ...book,
-                    name: authorData.name,
-                    surname: authorData.surname,
-                };
-            })
-        );
-        setEnrichedBooks(booksWithAuthors);
+        try {
+            const booksWithAuthors = await Promise.all(
+                results.map(async (book) => {
+                    const response = await fetch(
+                        `http://localhost:8000/person/get-by-id?id=${book.author_id}`,
+                        {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json",
+                                Authorization: `Bearer ${token}`,
+                            },
+                        }
+                    );
+
+                    if (response.ok) {
+                        const authorData = await response.json();
+                        return {
+                            ...book,
+                            name: authorData.name,
+                            surname: authorData.surname,
+                        };
+                    } else {
+                        console.error("Error fetching author for book:", response.status, response.statusText);
+                        return book;
+                    }
+                })
+            );
+
+            const uniqueEnrichedBooks = booksWithAuthors.filter((book, index, self) => {
+                return self.findIndex((b) => b.id === book.id) === index;
+            });
+
+            setEnrichedBooks(uniqueEnrichedBooks);
+        } catch (error) {
+            console.error("Error enriching books:", error);
+        }
     };
 
     useEffect(() => {
